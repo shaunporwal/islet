@@ -21,4 +21,5 @@ Create a Banner for Code Separation/Organization
 }
 \examples{
 make_banner(str_to_banner = 'asdf', banner_chr = '&', output = TRUE)
+
 }

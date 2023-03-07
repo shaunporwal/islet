@@ -10,6 +10,8 @@ check_duplicates(data_df, group_by_vars = NULL, print_dups = TRUE)
 \item{data_df}{Dataframe to be checked for duplicates}
 
 \item{group_by_vars}{A string or vector of strings of column name(s) to group by in asserting uniqueness}
+
+\item{print_dups}{A boolean argument, if TRUE, will allow function to display duplicate rows}
 }
 \value{
 Duplicate rows, both in general and by variable/column groupings
@@ -18,7 +20,23 @@ Duplicate rows, both in general and by variable/column groupings
 Title
 }
 \examples{
-Coming Soon
+# Load the dplyr package
+library(dplyr)
 
+# Create a sample data frame
+data_df <- data.frame(
+  ID = c(1, 1, 2, 3, 4),
+  Age = c(25, 25, 30, 40, 50),
+  Income = c(50000, 50000, 60000, 70000, 80000)
+)
+
+# Call the function to check for duplicates in the entire data frame
+check_duplicates(data_df)
+
+# Call the function to check for duplicates within the "ID" column
+check_duplicates(data_df, group_by_vars = "ID")
+
+# Call the function to check for duplicates within the "ID" and "Age" columns
+check_duplicates(data_df, group_by_vars = c("ID", "Age"))
 
 }

@@ -5,7 +5,15 @@
 #' @return SQL query string
 #' @export
 #'
-#' @examples Coming Soon!
+#' @examples
+#'
+#' # Path to the SQL file
+#' filepath <- system.file("extdata", "my_sql_file.sql", package = "my_package")
+#'
+#' # Call the function to read the SQL file and format it into a query
+#' to_sql_query(filepath)
+#'
+#' @export
 to_sql_query <- function(filepath){
   con = file(filepath, "r")
   sql_string <- ""

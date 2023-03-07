@@ -5,10 +5,11 @@
 #' @param output Boolean, TRUE to output, FALSE to Not Output
 #'
 #' @return Invisible String
-#' @export
 #'
 #' @examples
 #' make_banner(str_to_banner = 'asdf', banner_chr = '&', output = TRUE)
+#'
+#' @export
 
 make_banner <- function(str_to_banner,
                         banner_chr = "&",

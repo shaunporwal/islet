@@ -8,12 +8,12 @@ n <- 200
 trial <-
   tibble::tibble(
     trt = sample(c("Drug A", "Drug B"), n, replace = TRUE),
-    age = rnorm(n, mean = 50, sd = 15) %>% as.integer(),
-    marker = rgamma(n, 1, 1) %>% round(digits = 3),
-    stage = sample(c("T1", "T2", "T3", "T4"), size = n, replace = TRUE) %>% factor(),
-    grade = sample(c("I", "II", "III"), size = n, replace = TRUE) %>% factor(),
+    age = rnorm(n, mean = 50, sd = 15) |> as.integer(),
+    marker = rgamma(n, 1, 1) |> round(digits = 3),
+    stage = sample(c("T1", "T2", "T3", "T4"), size = n, replace = TRUE) |> factor(),
+    grade = sample(c("I", "II", "III"), size = n, replace = TRUE) |>factor(),
     response_prob =
-      ((trt == "Drug") - 0.2 * as.numeric(stage) - 0.1 * as.numeric(grade) + 0.1 * marker) %>%
+      ((trt == "Drug") - 0.2 * as.numeric(stage) - 0.1 * as.numeric(grade) + 0.1 * marker) |>
       {
         1 / (1 + exp(-.))
       },
@@ -24,13 +24,13 @@ trial <-
             -0.1 * as.numeric(grade) +
             rnorm(n, sd = 0.5)) * 12,
     death = ifelse(ttdeath_true <= 24, 1L, 0L),
-    ttdeath = pmin(ttdeath_true, 24) %>% round(digits = 2)
-  ) %>%
+    ttdeath = pmin(ttdeath_true, 24) |> round(digits = 2)
+  ) |>
   dplyr::mutate(
     age = ifelse(runif(n) < 0.95, age, NA_real_),
     marker = ifelse(runif(n) < 0.95, marker, NA_real_),
     response = ifelse(runif(n) < 0.95, response, NA_integer_)
-  ) %>%
+  ) |>
   dplyr::select(-dplyr::one_of("response_prob", "ttdeath_true"))
 summary(trial)
 
