@@ -2,10 +2,8 @@
 ^renv\.lock$
 ^codecov\.yml$
 ^appveyor\.yml$
-^\.travis\.yml$
-^gtsummary\.Rproj$
-^\.Rproj\.user$
-^data-raw/*$
+^data-raw$
+^data$
 ^docs$
 ^pkgdown$
 ^README\.Rmd$
@@ -37,3 +35,5 @@
 ^CRAN-SUBMISSION$
 ^man-images$
 ^vignettes/articles$
+^islet\.Rproj$
+
