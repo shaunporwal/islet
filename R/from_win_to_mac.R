@@ -1,12 +1,12 @@
 #' Title
 #'
-#' @param windows_path
-#' @param mounted_drive_name
+#' @param windows_path Windows path to be converted to Mac path
+#' @param mounted_drive_name Mounted drive to be included in path
 #'
-#' @return
+#' @return Converted Mac path
 #' @export
 #'
-#' @examples
+#' @examples Coming soon!
 from_win_to_mac <- function(windows_path,
                             mounted_drive_name) {
 

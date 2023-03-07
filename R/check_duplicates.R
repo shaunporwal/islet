@@ -1,12 +1,12 @@
 #' Title
 #'
-#' @param data_df
-#' @param group_by_vars
+#' @param data_df Dataframe to be checked for duplicates
+#' @param group_by_vars A string or vector of strings of column name(s) to group by in asserting uniqueness
 #'
-#' @return
+#' @return Duplicate rows, both in general and by variable/column groupings
 #' @export
 #'
-#' @examples
+#' @examples Coming Soon
 #'
 #'
 check_duplicates <- function(data_df,
