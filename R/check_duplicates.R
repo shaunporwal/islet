@@ -1,4 +1,4 @@
-#' Title
+#' Check if there are duplicate rows in a dataframe based on grouped columns
 #'
 #' @param data_df Dataframe to be checked for duplicates
 #' @param group_by_vars A string or vector of strings of column name(s) to group by in asserting uniqueness

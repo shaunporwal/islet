@@ -37,3 +37,4 @@
 ^vignettes/articles$
 ^islet\.Rproj$
 
+^\.Rproj\.user$

@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_duplicates.R
 \name{check_duplicates}
 \alias{check_duplicates}
-\title{Title}
+\title{Check if there are duplicate rows in a dataframe based on grouped columns}
 \usage{
 check_duplicates(data_df, group_by_vars = NULL, print_dups = TRUE)
 }
@@ -17,7 +17,7 @@ check_duplicates(data_df, group_by_vars = NULL, print_dups = TRUE)
 Duplicate rows, both in general and by variable/column groupings
 }
 \description{
-Title
+Check if there are duplicate rows in a dataframe based on grouped columns
 }
 \examples{
 # Load the dplyr package
