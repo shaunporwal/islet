@@ -1,19 +1,29 @@
 #' Filter out problematic rows for review
 #'
-#' `filter_cases` returns a DataFrame without the rows filtered out by the
-#' logic, and saved the filtered-out rows
+#' @description `filter_cases` returns a DataFrame without the rows filtered out by the
+#' logic, and saves the filtered-out rows to an RDS file.
 #'
-#' @param data_df
-#' @param select
-#' @param logic
-#' @param group_by_vars
-#' @param rds
-#' @param data_path
+#' @param data_df A DataFrame to filter.
+#' @param select A character vector of column names to select for filtering.
+#' @param logic A character string representing the filtering condition.
+#' @param group_by_vars A character vector of column names to group by (default is NULL).
+#' @param rds A character string for the RDS file name to save the filtered-out rows.
+#' @param data_path A character string representing the path to the data folder (default is get_data_path()).
+#' @param remove A logical indicating whether to remove the filtered rows from the returned DataFrame (default is TRUE).
 #'
-#' @return
+#' @return A DataFrame without the rows filtered out by the logic.
 #' @export
 #'
 #' @examples
+#' # Assuming you have a DataFrame called 'my_data'
+#' # Filter out rows where the value in the 'age' column is less than 18
+#' filtered_data <- filter_cases(
+#'   data_df = my_data,
+#'   select = "age",
+#'   logic = "age >= 18",
+#'   rds = "age_below_18",
+#'   data_path = "path/to/your/data"
+#' )
 filter_cases <- function(data_df,
                          select,
                          logic,
