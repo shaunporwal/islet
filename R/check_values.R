@@ -1,12 +1,25 @@
 #' A function to check to values from their from data sources
 #'
-#' @param data_df A dataframe that includes the from and to variables
-#' @param from A string or vector of strings that contain from variable names
-#' @param to A string or vector of strings containing the name of to variables
-#' @param type Either "map" or "cont" to specify the type of checking to be performed
-#' @param eval_func A function call for the type of check that should be performed on "cont" to variables.
+#' @description This function checks and inspects the mapping and values of specified columns
+#' in a dataframe, comparing 'from' and 'to' columns if provided.
 #'
+#' @param data_df A dataframe that includes the from and to variables.
+#' @param from A string or vector of strings that contain from variable names.
+#' @param to A string or vector of strings containing the name of to variables (default is NULL).
+#' @param type Either "map" or "cont" to specify the type of checking to be performed.
+#' @param eval_func A function call for the type of check that should be performed on "cont" to variables (default is as.numeric).
+#'
+#' @return An invisible dataframe with the results of the check.
 #' @export
+#'
+#' @examples
+#' # Assuming you have a DataFrame called 'my_data' with 'from_col' and 'to_col' columns
+#' check_values(
+#'   data_df = my_data,
+#'   from = "from_col",
+#'   to = "to_col",
+#'   type = "map"
+#' )
 check_values <- function(data_df,
                          from,
                          to = NULL,
