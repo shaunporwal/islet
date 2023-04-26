@@ -1,35 +1,31 @@
-#' Filter out problematic rows for review
+#' Filter Cases from a Data Frame
 #'
-#' @description `filter_cases` returns a DataFrame without the rows filtered out by the
-#' logic, and saves the filtered-out rows to an RDS file.
+#' This function filters cases from a data frame based on the given logical expression.
+#' It can also group the data by certain variables if needed.
 #'
-#' @param data_df A DataFrame to filter.
-#' @param select A character vector of column names to select for filtering.
-#' @param logic A character string representing the filtering condition.
-#' @param group_by_vars A character vector of column names to group by (default is NULL).
-#' @param rds A character string for the RDS file name to save the filtered-out rows.
-#' @param data_path A character string representing the path to the data folder (default is get_data_path()).
-#' @param remove A logical indicating whether to remove the filtered rows from the returned DataFrame (default is TRUE).
+#' @param data_df A data frame to be filtered.
+#' @param select A character vector of variable names used in the logical expression.
+#' @param logic A character string representing the logical expression to filter cases.
+#' @param group_by_vars A character vector of variable names to group by (default: NULL).
+#' @param rds A character string specifying the filename for the RDS file storing removed cases.
+#' @param data_path A character string specifying the file path for saving the RDS file (default: "secure_data/<data_date>").
+#' @param remove A logical value indicating whether to remove cases that don't meet the logical expression (default: TRUE).
 #'
-#' @return A DataFrame without the rows filtered out by the logic.
+#' @return An invisible data frame with either the cases that meet the logical expression (if remove = TRUE) or the ungrouped input data (if remove = FALSE).
 #' @export
 #'
 #' @examples
-#' # Assuming you have a DataFrame called 'my_data'
-#' # Filter out rows where the value in the 'age' column is less than 18
-#' filtered_data <- filter_cases(
-#'   data_df = my_data,
-#'   select = "age",
-#'   logic = "age >= 18",
-#'   rds = "age_below_18",
-#'   data_path = "path/to/your/data"
-#' )
+#' # Filter cases where age is greater than or equal to 18
+#' filtered_data <- filter_cases(data_df = my_data,
+#' select = "age",
+#' logic = "age >= 18",
+#' rds = "cases_removed")
 filter_cases <- function(data_df,
                          select,
                          logic,
                          group_by_vars = NULL,
                          rds,
-                         data_path = get_data_path(),
+                         data_path = file.path(getwd(), "secure_data", PROJECT_DICT$data_date),
                          remove = TRUE
                          ){
   data_df <-
@@ -53,7 +49,10 @@ filter_cases <- function(data_df,
           glue::glue("{data_path}/Metadata/Filtered/{rds}.rds"))
 
 
-
-  return(invisible(keep_cases))
+  if (remove == TRUE){
+    return(invisible(keep_cases))
+  } else{
+    return(invisible(data_df |> dplyr::ungroup()))
+  }
 
 }
