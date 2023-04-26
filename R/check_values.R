@@ -1,28 +1,28 @@
-#' A function to check parsed values from their raw data sources
+#' A function to check to values from their from data sources
 #'
-#' @param data_df A dataframe that includes the raw and parsed variables
-#' @param raw A string or vector of strings that contain raw variable names
-#' @param parsed A string or vector of strings containing the name of parsed variables
+#' @param data_df A dataframe that includes the from and to variables
+#' @param from A string or vector of strings that contain from variable names
+#' @param to A string or vector of strings containing the name of to variables
 #' @param type Either "map" or "cont" to specify the type of checking to be performed
-#' @param eval_func A function call for the type of check that should be performed on "cont" parsed variables.
+#' @param eval_func A function call for the type of check that should be performed on "cont" to variables.
 #'
 #' @export
 #'
 
 check_values <- function(data_df,
-                         raw,
-                         parsed,
+                         from,
+                         to = NULL,
                          type,
                          eval_func = as.numeric) {
 
   if (type == "map") {
 
-    if (!is.null(parsed)) {
+    if (!is.null(to)) {
 
       map_df <- data_df %>%
-        # dplyr::group_by(.data[[parsed]], # TODO: does this work if there are multiple values?
-        #                 .data[[raw]]) %>%
-        dplyr::group_by_at(c(parsed, raw)) %>%
+        # dplyr::group_by(.data[[to]], # TODO: does this work if there are multiple values?
+        #                 .data[[from]]) %>%
+        dplyr::group_by_at(c(to, from)) %>%
         dplyr::count()
 
       # 1. Test for 'cat' message in consolve
@@ -42,12 +42,12 @@ check_values <- function(data_df,
     } else {
 
       map_df <- data_df %>%
-        dplyr::group_by_at(raw) %>%
+        dplyr::group_by_at(from) %>%
         dplyr::count()
 
       # 6. Test for cat message in console
 
-      cat("\nInspect raw values:\n\n")
+      cat("\nInspect from values:\n\n")
 
       # 7. Test for printed df in console
       print(map_df %>%
@@ -62,20 +62,20 @@ check_values <- function(data_df,
 
   else if (type == "cont") {
 
-    if (is.null(parsed)) {
+    if (is.null(to)) {
 
       num_df <- data_df %>%
         dplyr::ungroup() %>%
-        dplyr::select(.data[[raw]]) %>%
-        dplyr::mutate(naturally_parsed = suppressWarnings(eval_func(.data[[raw]]))) %>%
-        dplyr::filter(is.na(naturally_parsed)) %>%
-        dplyr::count(.data[[raw]]) %>%
+        dplyr::select(.data[[from]]) %>%
+        dplyr::mutate(naturally_to = suppressWarnings(eval_func(.data[[from]]))) %>%
+        dplyr::filter(is.na(naturally_to)) %>%
+        dplyr::count(.data[[from]]) %>%
         dplyr::mutate(percent = scales::percent(n/nrow(data_df)))
 
       if (nrow(num_df) > 0) {
 
         # 9. Test for cat message
-        cat("\nNaturally non-parsing values:\n\n")
+        cat("\nNaturally non-parsing from values:\n\n")
 
         # 10. Test for df in console
         print(num_df %>%
@@ -85,14 +85,14 @@ check_values <- function(data_df,
 
       to_summary <- data_df %>%
         dplyr::ungroup() %>%
-        dplyr::select(.data[[raw]]) %>%
-        dplyr::mutate(naturally_parsed = suppressWarnings(eval_func(.data[[raw]]))) %>%
-        dplyr::pull(naturally_parsed)
+        dplyr::select(.data[[from]]) %>%
+        dplyr::mutate(naturally_to = suppressWarnings(eval_func(.data[[from]]))) %>%
+        dplyr::pull(naturally_to)
 
       if (length(to_summary) > 0) {
 
         # 11. Test for cat message in console
-        cat("\n\nSummary of naturally parsed values:\n\n")
+        cat("\n\nSummary of from values:\n\n")
 
         # 12. Test for summary printed in console
         print(summary(to_summary))
@@ -103,12 +103,12 @@ check_values <- function(data_df,
 
       num_df <- data_df %>%
         dplyr::ungroup() %>%
-        dplyr::select(.data[[parsed]],
-                      .data[[raw]]) %>%
-        dplyr::mutate(naturally_parsed = suppressWarnings(eval_func(.data[[raw]]))) %>%
-        dplyr::filter(is.na(naturally_parsed)) %>%
-        dplyr::count(.data[[parsed]], # TODO: does this work if there are multiple values?
-                     .data[[raw]])  %>%
+        dplyr::select(.data[[to]],
+                      .data[[from]]) %>%
+        dplyr::mutate(naturally_to = suppressWarnings(eval_func(.data[[from]]))) %>%
+        dplyr::filter(is.na(naturally_to)) %>%
+        dplyr::count(.data[[to]], # TODO: does this work if there are multiple values?
+                     .data[[from]])  %>%
         dplyr::mutate(percent = scales::percent(n/nrow(data_df)))
 
 
@@ -124,12 +124,12 @@ check_values <- function(data_df,
 
       to_summary <- data_df %>%
         dplyr::ungroup() %>%
-        dplyr::pull(parsed)
+        dplyr::pull(to)
 
       if (length(to_summary) > 0) {
 
         # 17. Test for cat message in console
-        cat("\n\nSummary of currently parsed values:\n\n")
+        cat("\n\nSummary of currently to values:\n\n")
         # 18. Test for printed summary in console
         print(summary(to_summary))
       }
