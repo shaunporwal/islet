@@ -19,7 +19,8 @@ filter_cases <- function(data_df,
                          logic,
                          group_by_vars = NULL,
                          rds,
-                         data_path = get_data_path()
+                         data_path = get_data_path(),
+                         remove = TRUE
                          ){
   data_df <-
     data_df %>%
@@ -40,6 +41,8 @@ filter_cases <- function(data_df,
 
   saveRDS(remove_cases,
           glue::glue("{data_path}/Metadata/Filtered/{rds}.rds"))
+
+
 
   return(invisible(keep_cases))
 
