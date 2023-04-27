@@ -1,8 +1,4 @@
-url: ~
+url: http://www.shaunporwal.com/islet/
 template:
   bootstrap: 5
 
-navbar:
-  structure:
-    - text: Templates
-      href: inst/project_templates/*
