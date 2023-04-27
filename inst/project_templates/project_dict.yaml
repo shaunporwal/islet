@@ -1,0 +1,12 @@
+data_date: {{Sys.Date()}}
+prior_data_date: 1900-01-01
+output_state: FALSE
+autosave_state: TRUE
+log_state: TRUE
+
+CURRENT_FILE: script_one
+
+files:
+  initial_raw:
+    df_example_1:
+    df_example_2:
