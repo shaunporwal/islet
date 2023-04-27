@@ -8,30 +8,48 @@
   # Run sym link for local iterations of this code (if doesn't already exist - will be added for initial creation)
   #
   #
-  # {{symbolic_link}}
-  #
+  # starter::create_symlink()
   #
   # Create data directory as needed (will not overwrite files) - then delete this code
   # Only needs to be run once per repository
   #
   #
 
+library(tidyverse)
+library(yaml)
+library(here)
+# library(glue)
+# library(lubridate)
+# library(rmarkdown)
+# library(knitr)
+# library(mice)
+# library(survival)
+# library(RODBC)
+# library(fuzzyjoin)
 
-# INITIALIZE PROJECT ------------------------------------------------------
 
-  source(here::here("Code/init_proj.R"))
+# SET PATH VARIABLES ------------------------------------------------------
 
+PROJECT_DICT <- yaml.load_file(here("Project Variables/project_dict.yaml"))
+
+# Incoming files ----------------------------------------------------------
+
+PROJECT_FILES <- PROJECT_DICT$files
+
+# SETUP FUNCTION SCRIPTS --------------------------------------------------
+
+# source(here("Code/script_one.R"))
+#
+# source(here("Code/script_two.R"))
 
 # CLEAR METADATA CALLS ----------------------------------------------------
 
-  # AmplioHelpers::reset_metadata("Per Run Values")
-  # AmplioHelpers::reset_metadata("Alerts")
-  # AmplioHelpers::reset_metadata("Issues")
-  # AmplioHelpers::reset_metadata("Line Logs")
-  # AmplioHelpers::reset_metadata("Allowed Values")
-  # AmplioHelpers::reset_metadata("All")
-
-
+  # reset_metadata("Per Run Values")
+  # reset_metadata("Alerts")
+  # reset_metadata("Issues")
+  # reset_metadata("Line Logs")
+  # reset_metadata("Allowed Values")
+  # reset_metadata("All")
 
 # DATA CLEANING FILES -----------------------------------------------------
 

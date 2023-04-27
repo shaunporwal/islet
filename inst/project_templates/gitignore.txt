@@ -42,4 +42,3 @@ Thumbs.db
 !site_setup*.xlsx
 !project_variables*.xlsx
 !data_date.txt
-!prior_data_date.txt
