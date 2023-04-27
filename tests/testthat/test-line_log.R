@@ -1,3 +1,22 @@
 test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+
+
+  # check is null
+  expect_error(
+    line_log(type = NULL,
+             item = NULL),
+    "argument is of length zero"
+  )
+
+  expect_error(
+    line_log(type = NULL,
+             item = "adfal"),
+    "argument is of length zero"
+  )
+
+  expect_error(
+    line_log(type = "COMMENT",
+             item = NULL),
+    "Type or Item cannot be NULL"
+  )
 })
