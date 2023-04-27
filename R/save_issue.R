@@ -26,7 +26,7 @@ save_issue <- function(data_df,
   saveRDS(data_df,
           glue::glue("{data_path}/{issues_path}/{rds}.rds"))
 
-  cat("\nIssue saved:\n\n")
+  cat("\nissue saved:\n\n")
 
   print(data_df,
         row.names = FALSE)
