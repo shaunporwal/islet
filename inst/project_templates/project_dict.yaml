@@ -1,0 +1,8 @@
+data_date: {{Sys.Date()}}
+
+CURRENT_FILE: script_one
+
+files:
+  initial_raw:
+    df_example_1:
+    df_example_2:
