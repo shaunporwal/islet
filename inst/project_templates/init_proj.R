@@ -2,7 +2,6 @@
 # subtitle: "Initial Project"
 # description: Initialize project variables and utility functions required for this project
 
-
 # LOAD LIBRARIES ----------------------------------------------------------
 
   # TODO: set up dependencies
@@ -22,7 +21,6 @@
 # SET PATH VARIABLES ------------------------------------------------------
 
   PROJECT_DICT <- yaml.load_file(here("Project Variables/project_dict.yaml"))
-
 
 
 # Incoming files ----------------------------------------------------------

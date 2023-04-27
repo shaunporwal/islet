@@ -13,19 +13,25 @@ compare_dataframes(
 )
 }
 \arguments{
-\item{oldData}{Old data}
+\item{oldData}{A dataframe representing the old data.}
 
-\item{newData}{New data}
+\item{newData}{A dataframe representing the new data. If NULL, the function will only analyze the oldData.}
 
-\item{suffixTerm}{Suffix term}
+\item{suffixTerm}{A character string representing the suffix term.}
 
-\item{indOutcomes}{indent outcomes (not sure if this is accurate)}
+\item{indOutcomes}{A character vector representing indent outcomes (not sure if this is accurate).}
 
-\item{surgCol}{surgeon column name}
+\item{surgCol}{A character string representing the surgeon column name.}
 }
 \value{
-final df list
+A list of dataframes containing the results of the comparison.
 }
 \description{
-Compare 2 dataframes
+This function compares two dataframes by analyzing their numeric, factor, character,
+binary, and date fields. It returns a list of dataframes with the results of the comparison.
+}
+\examples{
+old_data <- data.frame(...)
+new_data <- data.frame(...)
+compare_dataframes(oldData = old_data, newData = new_data)
 }

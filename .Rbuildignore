@@ -38,3 +38,4 @@
 ^islet\.Rproj$
 
 ^\.Rproj\.user$
+^_pkgdown\.yml$

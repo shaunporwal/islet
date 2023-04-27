@@ -1,15 +1,24 @@
-#' Parsing function
+#' Parse a dataframe and compute statistics for different variable types
+#'
+#' This function takes a dataframe as input and computes statistics for
+#' different variable types, including dates, binary, characters, factors,
+#' and numeric variables. It can also compute statistics per surgeon and
+#' per year if specified.
 #'
 #' @param parse_df Dataframe to parse
-#' @param suffixTerm Suffix term
-#' @param indOutcomes Indent outcomes?
-#' @param surgCol Surgeon Column
-#' @param addYears Add years
+#' @param suffixTerm Suffix term (default: "")
+#' @param indOutcomes A character vector of individual outcomes to compare per surgeon (default: c(""))
+#' @param surgCol A character string specifying the surgeon column (default: "surgeon")
+#' @param addYears A boolean indicating whether to add year values (default: FALSE)
 #'
-#' @return Result Dataframe
+#' @return A list of dataframes containing the computed statistics for the different variable types
 #' @export
 #'
 #' @examples
+#' # Assuming you have a dataframe called df
+#' parsed_data <- parse_function(df)
+#' # To include year values and individual outcomes per surgeon:
+#' parsed_data <- parse_function(df, indOutcomes = c("outcome1", "outcome2"), addYears = TRUE)
 
 parse_function <- function(parse_df, suffixTerm = "", indOutcomes = c(""), surgCol = "surgeon", addYears = FALSE) {
 

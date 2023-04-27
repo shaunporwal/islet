@@ -9,7 +9,7 @@
 
 - Create a symlink as needed to the shared drive data location (not needed on the first creation of directory from template)
 - Use the create directories function to establish data structure:
-  AmplioHelpers::create_project_directories(AmplioTemplates::amplio_data_directory)
+  # AmplioHelpers::create_project_directories(AmplioTemplates::amplio_data_directory)
 
 2. The PROJECT_DICT$data_date objects refers to the date folder in the "secure_data" folder.
 

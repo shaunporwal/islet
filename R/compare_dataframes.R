@@ -1,19 +1,21 @@
-
 #' Compare 2 dataframes
 #'
-#' @param oldData Old data
-#' @param newData New data
-#' @param suffixTerm Suffix term
-#' @param indOutcomes indent outcomes (not sure if this is accurate)
-#' @param surgCol surgeon column name
+#' This function compares two dataframes by analyzing their numeric, factor, character,
+#' binary, and date fields. It returns a list of dataframes with the results of the comparison.
 #'
-#' @return final df list
+#' @param oldData A dataframe representing the old data.
+#' @param newData A dataframe representing the new data. If NULL, the function will only analyze the oldData.
+#' @param suffixTerm A character string representing the suffix term.
+#' @param indOutcomes A character vector representing indent outcomes (not sure if this is accurate).
+#' @param surgCol A character string representing the surgeon column name.
+#'
+#' @return A list of dataframes containing the results of the comparison.
 #' @export
 #'
 #' @examples
-
-
-# library(islet)
+#' old_data <- data.frame(...)
+#' new_data <- data.frame(...)
+#' compare_dataframes(oldData = old_data, newData = new_data)
 compare_dataframes <- function(oldData = NULL, newData = NULL, suffixTerm = "", indOutcomes = c(""), surgCol = "surgeon") {
 
   # source("O:/Outcomes/Andrew/Amplio/Functions/ryanw/parseFunction.R")
