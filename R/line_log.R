@@ -20,7 +20,7 @@
 line_log <- function(type,
                      item,
                      current_file = get_current_file(),
-                     data_path = file.path(getwd(), "secure_data", PROJECT_DICT$data_date)) {
+                     data_path = file.path(getwd(), "data", PROJECT_DICT$data_date)) {
 
   type <- stringr::str_to_upper(type)
 

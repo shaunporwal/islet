@@ -1,7 +1,6 @@
 ## code to prepare `data_directories` dataset goes here
 
 data_directory <- list(
-
   "raw",
   "cleaned"
 

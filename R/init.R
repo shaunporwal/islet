@@ -1,29 +1,38 @@
-init <- function() {
+init <- function(
+    project_name,
+    path_to_proj) {
 
 
- has_r_proj <- isTRUE(any(grepl(x = list.files(path = path), pattern = "\\.Rproj$")))
+  # local project directory (folder should NOT exist already)
 
-# create project files i.e. project_variables.yaml
-# this will create project_variables directory in working directory
+  full_project_path <- file.path(path_to_proj, project_name)
 
- #TODO: Create interactive steps of initializing an rproj
- if (has_r_proj == TRUE) {
+  # data folder on shared drive (folder should exist already)
+  #dir.create("O:/Outcomes/Andrew/Amplio/Secure Data/{PROJECT_ALIAS}" %>% glue::glue())
+  # secure_data_path <- "O:/Outcomes/Andrew/Amplio/Secure Data/{PROJECT_ALIAS}" %>% glue::glue()
+
+  starter::create_project(path = full_project_path,
+                          path_data = file.path(full_project_path, 'data'),
+                          template = islet::project_template,
+                          symlink = FALSE)
+
+  # create project files i.e. project_variables.yaml
+  # this will create project_variables directory in working directory
+
+  #TODO: Create interactive steps of initializing an rproj
   path = getwd()
-
-  dir.create(file.path(path, "project_variables"))
- } else {
-    stop("Create .rproj for this project and rerun init()")
-  }
 
   # creates metadata and data folder
 
   # if data path doesn't exist... add here
-  dir.create(data_path, recursive = TRUE, showWarnings = FALSE)
+  # dir.create(, recursive = TRUE, showWarnings = FALSE)
 
-  for (i in 1:length(data_directory)) {
+  for (i in 1:length(islet::data_directory)) {
 
-    dir.create(file.path(data_path,
-                         data_directory[[i]]))
+    dir.create(file.path("data",
+                         islet::data_directory[[i]]))
 
-}
+
+
+  }
 }
