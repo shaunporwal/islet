@@ -18,7 +18,11 @@ read_raw_data <- function(file) {
       tryCatch({
         converted <- as.Date(col)
         if (all(is.na(converted))) {
-          return(toupper(iconv(col, to = "UTF-8")))
+          if (all(stringi::stri_enc_isutf8(col))) {
+            return(toupper(iconv(col, to = "UTF-8")))
+          } else {
+            return(col)
+          }
         } else {
           return(converted)
         }
@@ -29,5 +33,3 @@ read_raw_data <- function(file) {
 
   return(df_raw_data)
 }
-
-

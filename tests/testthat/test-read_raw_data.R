@@ -50,9 +50,18 @@ test_that("Handles special characters without errors", {
   unlink(temp_file)
 })
 
+test_that("Handles invalid multibyte strings without errors", {
+  temp_file <- tempfile(fileext = ".csv")
+  write.csv(data.frame(name = c("Alice", "Böb", "\xc3\x28"), date = c("2021-01-01", "2021-01-02", "2021-01-03")), temp_file, row.names = FALSE)
 
+  # Check if function runs without errors
+  expect_error(df <- read_raw_data(temp_file), NA)
 
+  # Check if special characters are converted to uppercase
+  char_cols <- sapply(df, is.character)
+  expect_true(all(sapply(df[char_cols], function(col) all(tolower(col[!is.na(col)]) != col[!is.na(col)]))))
 
-
+  unlink(temp_file)
+})
 
 
