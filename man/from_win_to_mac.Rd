@@ -18,10 +18,11 @@ Converted Mac path
 Title
 }
 \examples{
+\dontrun{
 # Convert a Windows path to a Mac path with a mounted drive name of "mydrive"
 from_win_to_mac("C:\\\\Users\\\\myname\\\\Documents\\\\myfile.txt", "mydrive")
 
 # Convert a Windows path to a Mac path with a mounted drive name of "Documents"
 from_win_to_mac("C:\\\\Users\\\\myname\\\\Documents\\\\myfile.txt", "Documents")
-
+}
 }

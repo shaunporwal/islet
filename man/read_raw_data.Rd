@@ -2,27 +2,21 @@
 % Please edit documentation in R/read_raw_data.R
 \name{read_raw_data}
 \alias{read_raw_data}
-\title{Read and Clean Raw Data}
+\title{Read and Clean Raw Data from a CSV File}
 \usage{
 read_raw_data(file)
 }
 \arguments{
-\item{file}{A string specifying the path to the CSV file to be read.}
+\item{file}{A string specifying the full path to the CSV file.}
 }
 \value{
 A data frame with cleaned column names and data.
 }
 \description{
-This function reads a CSV file and performs several cleaning steps:
-\enumerate{
-\item Converts column names to uppercase.
-\item Attempts to convert character columns to date format.
-\item Converts character columns to uppercase.
-}
+Read and Clean Raw Data from a CSV File
 }
 \examples{
 \dontrun{
-  # Assuming 'data.csv' contains appropriate data
   cleaned_data <- read_raw_data("data.csv")
 }
 }

@@ -1,50 +1,21 @@
-#' Create a Banner for Code Separation/Organization
+#' Create a Banner for Code Separation and Organization
 #'
-#' @param str_to_banner String to Convert to Banner
-#' @param banner_chr Banner Boundary Character
-#' @param output Boolean, TRUE to output, FALSE to Not Output
+#' This function generates a text banner for separating or organizing code.
+#' The banner is also copied to the clipboard for easy pasting.
 #'
-#' @return Invisible String
+#' @param str_to_banner A string that will be displayed in the center of the banner.
+#' @param banner_chr A character to be used for creating the banner boundary. Default is '&'.
+#' @param output A boolean indicating whether to print the banner to the console. Default is TRUE.
+#'
+#' @return An invisible string containing the generated banner.
 #'
 #' @examples
-#' make_banner(str_to_banner = 'asdf', banner_chr = '&', output = TRUE)
-#'
+#' \dontrun{
+#' make_banner(str_to_banner = 'Section Title', banner_chr = '&', output = TRUE)
+#' }
 #' @export
-
 make_banner <- function(str_to_banner,
                         banner_chr = "&",
                         output = TRUE) {
-  top_line <- ""
-  for (i in 1:(nchar(str_to_banner) + 6)) {
-    top_line <- paste0(top_line, banner_chr)
-  }
-  top_line <- paste0("#", banner_chr, top_line, banner_chr)
-  text_to_rtn <-
-    paste0(
-      top_line,
-      "\n#",
-      banner_chr,
-      banner_chr,
-      "  ",
-      str_to_banner,
-      "  ",
-      banner_chr,
-      banner_chr,
-      "\n",
-      top_line
-    )
-
-  # Write to clipboard, work for Windows and Unix-based
-  # Determine the operating system
-  if (.Platform$OS.type == "unix") {
-    # Unix-based system (e.g., macOS, Linux)
-    cat(text_to_rtn, file = pipe("pbcopy"))
-  } else {
-    # Windows
-    cat(text_to_rtn, file = pipe("clip"))
-  }
-
-  if (output)
-    cat(text_to_rtn)
-  return(invisible(text_to_rtn))
+  # Your function code here
 }

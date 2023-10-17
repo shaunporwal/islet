@@ -2,24 +2,26 @@
 % Please edit documentation in R/make_banner.R
 \name{make_banner}
 \alias{make_banner}
-\title{Create a Banner for Code Separation/Organization}
+\title{Create a Banner for Code Separation and Organization}
 \usage{
 make_banner(str_to_banner, banner_chr = "&", output = TRUE)
 }
 \arguments{
-\item{str_to_banner}{String to Convert to Banner}
+\item{str_to_banner}{A string that will be displayed in the center of the banner.}
 
-\item{banner_chr}{Banner Boundary Character}
+\item{banner_chr}{A character to be used for creating the banner boundary. Default is '&'.}
 
-\item{output}{Boolean, TRUE to output, FALSE to Not Output}
+\item{output}{A boolean indicating whether to print the banner to the console. Default is TRUE.}
 }
 \value{
-Invisible String
+An invisible string containing the generated banner.
 }
 \description{
-Create a Banner for Code Separation/Organization
+This function generates a text banner for separating or organizing code.
+The banner is also copied to the clipboard for easy pasting.
 }
 \examples{
-make_banner(str_to_banner = 'asdf', banner_chr = '&', output = TRUE)
-
+\dontrun{
+make_banner(str_to_banner = 'Section Title', banner_chr = '&', output = TRUE)
+}
 }

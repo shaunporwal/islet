@@ -36,5 +36,23 @@ test_that("All data is in uppercase", {
   unlink(temp_file)
 })
 
+test_that("Handles special characters without errors", {
+  temp_file <- tempfile(fileext = ".csv")
+  write.csv(data.frame(name = c("Alice", "Böb"), date = c("2021-01-01", "2021-01-02")), temp_file, row.names = FALSE)
+
+  # Check if function runs without errors
+  expect_error(df <- read_raw_data(temp_file), NA)
+
+  # Check if special characters are converted to uppercase
+  char_cols <- sapply(df, is.character)
+  expect_true(all(sapply(df[char_cols], function(col) all(tolower(col) != col))))
+
+  unlink(temp_file)
+})
+
+
+
+
+
 
 

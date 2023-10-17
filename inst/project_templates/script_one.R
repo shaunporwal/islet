@@ -17,7 +17,7 @@ fn_read_data <- function(df_clin_data,
   # Read the files
   df_clin_data <- readr::read_csv(file = file.path(get_data_path(),
                                                    clinical_data_file),
-                                  col_types = cols(.default = "c")) %>%
+                                  col_types = cols(.default = "c")) |>
     janitor::clean_names(case = "all_caps")
 
 
@@ -30,8 +30,8 @@ fn_read_data <- function(df_clin_data,
 
   clin_col <- gdata::read.xls(here("Documents/project_variables_radpros.xlsx"),
                               sheet = "Parsed Variables",
-                              stringsAsFactors = FALSE) %>%
-    filter(Data.Source.Name == "clinical_data") %>%
+                              stringsAsFactors = FALSE) |>
+    filter(Data.Source.Name == "clinical_data") |>
     pull(Raw.Variable.Dependency)
 
 
