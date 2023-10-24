@@ -64,4 +64,45 @@ test_that("Handles invalid multibyte strings without errors", {
   unlink(temp_file)
 })
 
+# New Tests for RDS files
 
+test_that("read_raw_data returns a data frame for RDS files", {
+  temp_file <- tempfile(fileext = ".rds")
+  sample_data <- data.frame(name = c("Alice", "Bob"), date = c("2021-01-01", "2021-01-02"))
+  saveRDS(sample_data, temp_file)
+  df <- read_raw_data(temp_file)
+  expect_type(df, "list")
+  unlink(temp_file)
+})
+
+test_that("Column names are in uppercase for RDS files", {
+  temp_file <- tempfile(fileext = ".rds")
+  sample_data <- data.frame(name = c("Alice", "Bob"), date = c("2021-01-01", "2021-01-02"))
+  saveRDS(sample_data, temp_file)
+  df <- read_raw_data(temp_file)
+  expect_true(all(tolower(names(df)) != names(df)))
+  unlink(temp_file)
+})
+
+test_that("Date columns are converted to date format for RDS files", {
+  temp_file <- tempfile(fileext = ".rds")
+  sample_data <- data.frame(name = c("Alice", "Bob"), date = c("2021-01-01", "2021-01-02"))
+  saveRDS(sample_data, temp_file)
+  df <- read_raw_data(temp_file)
+  expect_true(inherits(df$DATE, "Date"))
+  unlink(temp_file)
+})
+
+test_that("All data is in uppercase for RDS files", {
+  temp_file <- tempfile(fileext = ".rds")
+  sample_data <- data.frame(name = c("Alice", "Bob"), date = c("2021-01-01", "2021-01-02"))
+  saveRDS(sample_data, temp_file)
+  df <- read_raw_data(temp_file)
+
+  # Only check character columns
+  char_cols <- sapply(df, is.character)
+  expect_true(all(sapply(df[char_cols], function(col) all(tolower(col) != col))))
+  unlink(temp_file)
+})
+
+# End of new RDS tests
