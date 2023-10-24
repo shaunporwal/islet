@@ -20,7 +20,8 @@ Imports:
     dplyr,
     janitor,
     stringr,
-    utils
+    utils,
+    stringi
 Depends: 
     R (>= 2.10)
 LazyData: true

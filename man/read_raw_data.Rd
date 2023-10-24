@@ -2,21 +2,22 @@
 % Please edit documentation in R/read_raw_data.R
 \name{read_raw_data}
 \alias{read_raw_data}
-\title{Read and Clean Raw Data from a CSV File}
+\title{Read and Clean Raw Data from a CSV or RDS File}
 \usage{
 read_raw_data(file)
 }
 \arguments{
-\item{file}{A string specifying the full path to the CSV file.}
+\item{file}{A string specifying the full path to the CSV or RDS file.}
 }
 \value{
 A data frame with cleaned column names and data.
 }
 \description{
-Read and Clean Raw Data from a CSV File
+Read and Clean Raw Data from a CSV or RDS File
 }
 \examples{
 \dontrun{
-  cleaned_data <- read_raw_data("data.csv")
+  cleaned_data_csv <- read_raw_data("data.csv")
+  cleaned_data_rds <- read_raw_data("data.rds")
 }
 }
