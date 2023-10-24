@@ -43,7 +43,7 @@ read_raw_data <- function(file) {
         return(converted)
       }
     }, error = function(e) {
-      message("Error in converting column: ", conditionMessage(e))
+      message(sprintf("Error in converting column '%s': %s", col_name, conditionMessage(e)))
       return(col)
     })
   }
@@ -54,3 +54,4 @@ read_raw_data <- function(file) {
 
   return(df_raw_data)
 }
+

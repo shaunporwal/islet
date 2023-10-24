@@ -367,4 +367,37 @@ test_that("read_raw_data works for RDS with data frame", {
   expect_equal(names(result), c("A", "B"))
 })
 
+# test_that("Error message should include column name and conditionMessage", {
+#   # Create temporary file
+#   temp_rds <- tempfile(fileext = ".rds")
+#
+#   print(
+#     data.frame(
+#       column1 = c("invalid_date", "2021-10-10"),
+#       column2 = c("A", "B"))
+#   )
+#
+#   # Generate data to write to temp_file
+#   saveRDS(
+#     data.frame(
+#       column1 = c("invalid_date", "2021-10-10"),
+#       column2 = c("A", "B")),
+#     file = temp_rds
+#     )
+#
+#   # Capture the message
+#   output <- capture_messages({
+#     read_raw_data(temp_rds)
+#   })
+#   #
+#   # # Validate the message
+#   # expected_substr1 <- "Error in converting column 'column1'"
+#   # expected_substr2 <- "character string is not in a standard unambiguous format"
+#   #
+#   # expect_true(grepl(expected_substr1, output, fixed = TRUE))
+#   # expect_true(grepl(expected_substr2, output, fixed = TRUE))
+#   #
+#   # # Remove temp_file
+#   unlink(temp_rds)
+# })
 
