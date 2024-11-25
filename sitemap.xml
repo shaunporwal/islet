@@ -1,39 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://www.shaunporwal.com/islet/404.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/articles/Templates.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/authors.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/reference/from_win_to_mac.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/reference/make_banner.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/reference/read_raw_data.html</loc>
-  </url>
-  <url>
-    <loc>http://www.shaunporwal.com/islet/reference/to_sql_query.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>http://www.shaunporwal.com/islet/404.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/LICENSE-text.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/LICENSE.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/articles/Templates.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/articles/index.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/authors.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/index.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/check_duplicates.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/check_values.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/compare_dataframes.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/filter_cases.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/from_win_to_mac.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/index.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/line_log.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/make_banner.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/parse_function.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/read_raw_data.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/run_file.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/save_issue.html</loc></url>
+<url><loc>http://www.shaunporwal.com/islet/reference/to_sql_query.html</loc></url>
 </urlset>
+
