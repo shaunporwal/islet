@@ -15,8 +15,8 @@
 #'   # Assuming 'data.csv' contains appropriate data
 #'   cleaned_data <- read_raw_data("data.csv")
 #' }
-read_raw_data <- function(file){
-  df_raw_data <- read.csv(file = file, stringsAsFactors = FALSE) %>%
+read_raw_data <- function(file) {
+  df_raw_data <- utils::read.csv(file = file, stringsAsFactors = FALSE) %>%
     janitor::clean_names(case = "all_caps") %>%
     mutate(across(where(is.character), function(col) {
       tryCatch({
