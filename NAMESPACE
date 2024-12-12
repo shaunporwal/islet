@@ -2,6 +2,7 @@
 
 export(check_duplicates)
 export(from_win_to_mac)
+export(get_sql)
 export(make_banner)
 export(read_raw_data)
 export(to_sql_query)
