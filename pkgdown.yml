@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   Templates: Templates.html
-last_built: 2024-12-31T03:42Z
+last_built: 2024-12-31T03:49Z
 urls:
   reference: http://www.shaunporwal.com/islet/reference
   article: http://www.shaunporwal.com/islet/articles
