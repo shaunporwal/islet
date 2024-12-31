@@ -38,26 +38,3 @@ A list of dataframes containing the comparison results:
 Compares two datasets, summarizing numeric, factor, character, binary, date,
 and surgeon-specific fields. Handles comparisons with or without a new dataset.
 }
-\examples{
-# Load example data
-old_data <- mtcars
-new_data <- mtcars
-
-# Simulate fields to match the expected structure
-set.seed(123) # Ensure reproducibility
-old_data$field <- rownames(old_data)
-new_data$field <- rownames(new_data)
-old_data$outcome1 <- sample(0:1, nrow(old_data), replace = TRUE)
-new_data$outcome1 <- sample(0:1, nrow(new_data), replace = TRUE)
-
-# Run the function
-results <- compare_df(
-  old_data = old_data,
-  new_data = new_data,
-  ind_outcomes = c("outcome1"),
-  surg_col = "field"
-)
-
-# Access numeric comparison results
-numeric_results <- results$numeric_join
-}

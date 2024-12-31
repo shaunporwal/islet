@@ -21,46 +21,6 @@
 #' If `save_views` is TRUE, the views of the dataframes are saved as additional files in the output directory.
 #'
 #' @export
-#'
-#' @examples
-#' # Load example data
-#' old_data <- mtcars
-#' new_data <- mtcars
-#'
-#' # Simulate a date column in both datasets
-#' set.seed(123) # Ensure reproducibility
-#' old_data$date <- as.Date("2024-01-01") + sample(0:100, nrow(old_data), replace = TRUE)
-#' new_data$date <- as.Date("2024-01-01") + sample(50:150, nrow(new_data), replace = TRUE)
-#'
-#' # Save the datasets to temporary CSV files
-#' df_old_path <- tempfile(fileext = ".csv")
-#' df_new_path <- tempfile(fileext = ".csv")
-#' readr::write_csv(old_data, df_old_path)
-#' readr::write_csv(new_data, df_new_path)
-#'
-#' # Define the output directory
-#' output_dir <- tempdir()
-#'
-#' # Define the variables to compare
-#' final_vars_set <- c("mpg", "cyl", "disp", "hp", "date")
-#'
-#' # Specify the date column
-#' date_col <- "date"
-#'
-#' # Run the function
-#' results <- compare_clean_data(
-#'   df_old_path = df_old_path,
-#'   df_new_path = df_new_path,
-#'   output_dir = output_dir,
-#'   final_vars_set = final_vars_set,
-#'   date_col = date_col,
-#'   limit_to_same_date = TRUE,
-#'   show_views = FALSE,
-#'   save_views = FALSE
-#' )
-#'
-#' # Access numeric comparison results
-#' numeric_results <- results$numeric
 compare_clean_data <- function(
     df_old_path,
     df_new_path,
@@ -145,7 +105,7 @@ compare_clean_data <- function(
       tryCatch(
         {
           output_file <- file.path(output_dir, paste0("results_", name, "_", date1, "_", date2, ".csv"))
-          suppressWarnings(write.csv(data, file = output_file, row.names = FALSE))
+          suppressWarnings(base::write.csv(data, file = output_file, row.names = FALSE))
           message(paste("Saved:", output_file))
         },
         error = function(e) {
@@ -160,7 +120,7 @@ compare_clean_data <- function(
     purrr::iwalk(object_list, function(data, name) {
       if (!is.null(data)) {
         view_file <- file.path(output_dir, paste0("view_", name, "_", date1, "_", date2, ".csv"))
-        suppressWarnings(write.csv(data, file = view_file, row.names = FALSE))
+        suppressWarnings(base::write.csv(data, file = view_file, row.names = FALSE))
         message(paste("View saved:", view_file))
       }
     })

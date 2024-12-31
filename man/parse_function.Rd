@@ -38,22 +38,3 @@ A list of dataframes summarizing the input dataset:
 Processes a dataframe to generate summaries for numeric, factor, character,
 binary, date, and other data types. Supports year-based summaries and surgeon-specific outcomes.
 }
-\examples{
-# Load example data
-my_data <- mtcars
-
-# Add a simulated surgeon column and a date column
-set.seed(123) # Ensure reproducibility
-my_data$surgeon <- sample(letters[1:5], nrow(my_data), replace = TRUE)
-my_data$date <- as.Date("2024-01-01") + sample(0:100, nrow(my_data), replace = TRUE)
-my_data$outcome1 <- sample(0:1, nrow(my_data), replace = TRUE)
-
-# Parse the dataframe without year summaries
-results <- parse_function(parse_df = my_data)
-
-# Parse the dataframe with year-based summaries
-results_with_years <- parse_function(parse_df = my_data, add_years = TRUE)
-
-# Parse the dataframe with specific outcomes
-results_with_outcomes <- parse_function(parse_df = my_data, ind_outcomes = c("outcome1"))
-}

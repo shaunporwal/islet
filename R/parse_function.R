@@ -19,30 +19,7 @@
 #'   \item{surg_df}{Summaries by surgeon for specified outcomes (if applicable).}
 #' }
 #' @export
-#'
-#' @examples
-#' # Load example data
-#' my_data <- mtcars
-#'
-#' # Add a simulated surgeon column and a date column
-#' set.seed(123) # Ensure reproducibility
-#' my_data$surgeon <- sample(letters[1:5], nrow(my_data), replace = TRUE)
-#' my_data$date <- as.Date("2024-01-01") + sample(0:100, nrow(my_data), replace = TRUE)
-#' my_data$outcome1 <- sample(0:1, nrow(my_data), replace = TRUE)
-#'
-#' # Parse the dataframe without year summaries
-#' results <- parse_function(parse_df = my_data)
-#'
-#' # Parse the dataframe with year-based summaries
-#' results_with_years <- parse_function(parse_df = my_data, add_years = TRUE)
-#'
-#' # Parse the dataframe with specific outcomes
-#' results_with_outcomes <- parse_function(parse_df = my_data, ind_outcomes = c("outcome1"))
-
 parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon", add_years = FALSE) {
-  library(dplyr)
-  library(tidyr)
-
   # Ensure ungrouped dataframe
   parse_df <- parse_df %>% ungroup()
 
@@ -65,7 +42,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(~ inherits(., "Date")), ~ mean(is.na(.), na.rm = TRUE))) %>%
     pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_date")
 
-  date_df <- reduce(list(min_date, max_date, perc_na_date), full_join, by = "field")
+  date_df <- purrr::reduce(list(min_date, max_date, perc_na_date), full_join, by = "field")
 
   # Summarize binary columns
   ratio_binary <- parse_df %>%
@@ -93,7 +70,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(is.character), ~ mean(is.na(.), na.rm = TRUE))) %>%
     pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_char")
 
-  char_df <- reduce(list(values_char, distinct_char, perc_na_char), full_join, by = "field")
+  char_df <- purrr::reduce(list(values_char, distinct_char, perc_na_char), full_join, by = "field")
 
   # Summarize factor columns
   levels_factor <- parse_df %>%
@@ -108,7 +85,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(is.factor), ~ mean(is.na(.), na.rm = TRUE))) %>%
     pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_factor")
 
-  factor_df <- reduce(list(levels_factor, distinct_factor, perc_na_factor), full_join, by = "field")
+  factor_df <- purrr::reduce(list(levels_factor, distinct_factor, perc_na_factor), full_join, by = "field")
 
   # Summarize numeric columns
   summary_numeric <- parse_df %>%

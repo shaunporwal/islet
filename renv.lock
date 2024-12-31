@@ -52,45 +52,6 @@
       ],
       "Hash": "5122bb14d8736372411f955e1b16bc8a"
     },
-    "R.methodsS3": {
-      "Package": "R.methodsS3",
-      "Version": "1.8.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "utils"
-      ],
-      "Hash": "278c286fd6e9e75d0c2e8f731ea445c8"
-    },
-    "R.oo": {
-      "Package": "R.oo",
-      "Version": "1.27.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R.methodsS3",
-        "methods",
-        "utils"
-      ],
-      "Hash": "6ac79ff194202248cf946fe3a5d6d498"
-    },
-    "R.utils": {
-      "Package": "R.utils",
-      "Version": "2.12.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R.methodsS3",
-        "R.oo",
-        "methods",
-        "tools",
-        "utils"
-      ],
-      "Hash": "3dc2829b790254bfba21e60965787651"
-    },
     "R6": {
       "Package": "R6",
       "Version": "2.5.1",
@@ -1528,25 +1489,6 @@
         "stringr"
       ],
       "Hash": "58767e44739b76965332e8a4fe3f91f1"
-    },
-    "starter": {
-      "Package": "starter",
-      "Version": "0.1.16",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R.utils",
-        "cli",
-        "dplyr",
-        "gert",
-        "glue",
-        "renv",
-        "rlang",
-        "rprojroot",
-        "rstudioapi"
-      ],
-      "Hash": "23f77fb7480db1423d8a0ce6de055140"
     },
     "stringi": {
       "Package": "stringi",
