@@ -21,7 +21,27 @@
 #' @export
 #'
 #' @examples
-#' results <- compare_df(old_data = df1, new_data = df2, ind_outcomes = c("outcome1"))
+#' # Load example data
+#' old_data <- mtcars
+#' new_data <- mtcars
+#'
+#' # Simulate fields to match the expected structure
+#' set.seed(123) # Ensure reproducibility
+#' old_data$field <- rownames(old_data)
+#' new_data$field <- rownames(new_data)
+#' old_data$outcome1 <- sample(0:1, nrow(old_data), replace = TRUE)
+#' new_data$outcome1 <- sample(0:1, nrow(new_data), replace = TRUE)
+#'
+#' # Run the function
+#' results <- compare_df(
+#'   old_data = old_data,
+#'   new_data = new_data,
+#'   ind_outcomes = c("outcome1"),
+#'   surg_col = "field"
+#' )
+#'
+#' # Access numeric comparison results
+#' numeric_results <- results$numeric_join
 compare_df <- function(old_data = NULL, new_data = NULL, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon") {
 
   # Analyze the old dataset
