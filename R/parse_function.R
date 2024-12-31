@@ -20,7 +20,6 @@
 #' }
 #' @export
 parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon", add_years = FALSE) {
-  # Ensure ungrouped dataframe
   parse_df <- parse_df %>% ungroup()
 
   # Add dummy values to ensure functions work with empty datasets
@@ -101,7 +100,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
 
   # Handle outcomes for surgeons
-  if (length(ind_outcomes) > 0) {
+  if (length(ind_outcomes) > 0 && any(ind_outcomes != "")) {
     if (!all(ind_outcomes %in% names(parse_df))) {
       stop("Specified outcomes are missing in the dataset.")
     }
