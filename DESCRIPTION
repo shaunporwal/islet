@@ -19,6 +19,8 @@ Config/testthat/edition: 3
 Imports: 
     dplyr,
     janitor,
+    purrr,
+    readr,
     stringr
 Depends: 
     R (>= 2.10)
