@@ -105,7 +105,7 @@ compare_clean_data <- function(
       tryCatch(
         {
           output_file <- file.path(output_dir, paste0("results_", name, "_", date1, "_", date2, ".csv"))
-          suppressWarnings(base::write.csv(data, file = output_file, row.names = FALSE))
+          suppressWarnings(utils::write.csv(data, file = output_file, row.names = FALSE))
           message(paste("Saved:", output_file))
         },
         error = function(e) {
@@ -120,7 +120,7 @@ compare_clean_data <- function(
     purrr::iwalk(object_list, function(data, name) {
       if (!is.null(data)) {
         view_file <- file.path(output_dir, paste0("view_", name, "_", date1, "_", date2, ".csv"))
-        suppressWarnings(base::write.csv(data, file = view_file, row.names = FALSE))
+        suppressWarnings(utils::write.csv(data, file = view_file, row.names = FALSE))
         message(paste("View saved:", view_file))
       }
     })
@@ -132,7 +132,7 @@ compare_clean_data <- function(
   if (show_views) {
     purrr::iwalk(object_list, function(data, name) {
       if (!is.null(data)) {
-        suppressWarnings(View(data, title = paste0("View - ", name)))
+        suppressWarnings(utils::View(data, title = paste0("View - ", name)))
       }
     })
   } else {

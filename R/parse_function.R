@@ -32,15 +32,15 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
   # Summarize date columns
   min_date <- parse_df %>%
     summarise(across(where(~ inherits(., "Date")), ~ min(., na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "min_date")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "min_date")
 
   max_date <- parse_df %>%
     summarise(across(where(~ inherits(., "Date")), ~ max(., na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "max_date")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "max_date")
 
   perc_na_date <- parse_df %>%
     summarise(across(where(~ inherits(., "Date")), ~ mean(is.na(.), na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_date")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_date")
 
   date_df <- purrr::reduce(list(min_date, max_date, perc_na_date), full_join, by = "field")
 
@@ -48,42 +48,42 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
   ratio_binary <- parse_df %>%
     summarise(across(where(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2)),
                      ~ mean(., na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "ratio_binary")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "ratio_binary")
 
   perc_na_binary <- parse_df %>%
     summarise(across(where(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2)),
                      ~ mean(is.na(.), na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_binary")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_binary")
 
   binary_df <- full_join(ratio_binary, perc_na_binary, by = "field")
 
   # Summarize character columns
   values_char <- parse_df %>%
     summarise(across(where(is.character), ~ paste(unique(.), collapse = ", "))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "values_char")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "values_char")
 
   distinct_char <- parse_df %>%
     summarise(across(where(is.character), ~ n_distinct(.))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_char")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_char")
 
   perc_na_char <- parse_df %>%
     summarise(across(where(is.character), ~ mean(is.na(.), na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_char")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_char")
 
   char_df <- purrr::reduce(list(values_char, distinct_char, perc_na_char), full_join, by = "field")
 
   # Summarize factor columns
   levels_factor <- parse_df %>%
     summarise(across(where(is.factor), ~ paste(levels(.), collapse = ", "))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "levels_factor")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "levels_factor")
 
   distinct_factor <- parse_df %>%
     summarise(across(where(is.factor), ~ n_distinct(.))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_factor")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_factor")
 
   perc_na_factor <- parse_df %>%
     summarise(across(where(is.factor), ~ mean(is.na(.), na.rm = TRUE))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_factor")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_factor")
 
   factor_df <- purrr::reduce(list(levels_factor, distinct_factor, perc_na_factor), full_join, by = "field")
 
@@ -98,7 +98,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
       q75 = ~ quantile(., 0.75, na.rm = TRUE),
       na_perc = ~ mean(is.na(.), na.rm = TRUE)
     ))) %>%
-    pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
+    tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
 
   # Handle outcomes for surgeons
   if (length(ind_outcomes) > 0) {
