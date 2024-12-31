@@ -26,7 +26,7 @@ compare_clean_data <- function(
     df_new_path,
     output_dir,
     final_vars_set,
-    date_col, # New parameter for the date column name
+    date_col,
     limit_to_same_date = TRUE,
     show_views = FALSE,
     save_views = FALSE
