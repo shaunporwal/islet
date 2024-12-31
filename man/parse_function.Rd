@@ -17,7 +17,7 @@ parse_function(
 
 \item{suffix_term}{Character. Suffix to append to parsed column names (default: "").}
 
-\item{ind_outcomes}{Character vector. Individual outcomes for parsing (default: "").}
+\item{ind_outcomes}{Character vector. Individual outcomes for parsing and surgeon-specific summaries (default: "").}
 
 \item{surg_col}{Character. Column name representing surgeons (default: "surgeon").}
 
@@ -26,22 +26,34 @@ parse_function(
 \value{
 A list of dataframes summarizing the input dataset:
 \describe{
-\item{numeric_df}{Numeric column summaries (e.g., mean, quartiles, NA percentages).}
-\item{factor_df}{Factor column summaries (e.g., unique levels, NA percentages).}
-\item{char_df}{Character column summaries (e.g., unique values, NA percentages).}
-\item{binary_df}{Binary column summaries (e.g., ratio of TRUE, NA percentages).}
-\item{date_df}{Date column summaries (e.g., min, max, NA percentages).}
-\item{surg_df}{Summaries by surgeon for specified outcomes.}
-\item{years_mean}{Yearly mean summaries if \code{add_years = TRUE}.}
-\item{years_na}{Yearly NA percentages if \code{add_years = TRUE}.}
+\item{date_df}{Summaries for date columns (e.g., min, max, NA percentages).}
+\item{binary_df}{Summaries for binary columns (e.g., ratio of TRUE, NA percentages).}
+\item{char_df}{Summaries for character columns (e.g., unique values, NA percentages).}
+\item{factor_df}{Summaries for factor columns (e.g., unique levels, NA percentages).}
+\item{summary_numeric}{Summaries for numeric columns (e.g., mean, quartiles, NA percentages).}
+\item{surg_df}{Summaries by surgeon for specified outcomes (if applicable).}
 }
 }
 \description{
 Processes a dataframe to generate summaries for numeric, factor, character,
-binary, date, and other data types. Supports year-based summaries.
+binary, date, and other data types. Supports year-based summaries and surgeon-specific outcomes.
 }
 \examples{
+# Load example data
+my_data <- mtcars
+
+# Add a simulated surgeon column and a date column
+set.seed(123) # Ensure reproducibility
+my_data$surgeon <- sample(letters[1:5], nrow(my_data), replace = TRUE)
+my_data$date <- as.Date("2024-01-01") + sample(0:100, nrow(my_data), replace = TRUE)
+my_data$outcome1 <- sample(0:1, nrow(my_data), replace = TRUE)
+
+# Parse the dataframe without year summaries
 results <- parse_function(parse_df = my_data)
+
+# Parse the dataframe with year-based summaries
 results_with_years <- parse_function(parse_df = my_data, add_years = TRUE)
+
+# Parse the dataframe with specific outcomes
 results_with_outcomes <- parse_function(parse_df = my_data, ind_outcomes = c("outcome1"))
 }

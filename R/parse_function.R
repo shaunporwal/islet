@@ -11,14 +11,12 @@
 #'
 #' @return A list of dataframes summarizing the input dataset:
 #' \describe{
-#'   \item{numeric_df}{Numeric column summaries (e.g., mean, quartiles, NA percentages).}
-#'   \item{factor_df}{Factor column summaries (e.g., unique levels, NA percentages).}
-#'   \item{char_df}{Character column summaries (e.g., unique values, NA percentages).}
-#'   \item{binary_df}{Binary column summaries (e.g., ratio of TRUE, NA percentages).}
-#'   \item{date_df}{Date column summaries (e.g., min, max, NA percentages).}
-#'   \item{surg_df}{Summaries by surgeon for specified outcomes.}
-#'   \item{years_mean}{Yearly mean summaries if \code{add_years = TRUE}.}
-#'   \item{years_na}{Yearly NA percentages if \code{add_years = TRUE}.}
+#'   \item{date_df}{Summaries for date columns (e.g., min, max, NA percentages).}
+#'   \item{binary_df}{Summaries for binary columns (e.g., ratio of TRUE, NA percentages).}
+#'   \item{char_df}{Summaries for character columns (e.g., unique values, NA percentages).}
+#'   \item{factor_df}{Summaries for factor columns (e.g., unique levels, NA percentages).}
+#'   \item{summary_numeric}{Summaries for numeric columns (e.g., mean, quartiles, NA percentages).}
+#'   \item{surg_df}{Summaries by surgeon for specified outcomes (if applicable).}
 #' }
 #' @export
 #'
@@ -40,7 +38,10 @@
 #'
 #' # Parse the dataframe with specific outcomes
 #' results_with_outcomes <- parse_function(parse_df = my_data, ind_outcomes = c("outcome1"))
+
 parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon", add_years = FALSE) {
+  library(dplyr)
+  library(tidyr)
 
   # Ensure ungrouped dataframe
   parse_df <- parse_df %>% ungroup()
@@ -53,73 +54,74 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
 
   # Summarize date columns
   min_date <- parse_df %>%
-    summarise_if(is.Date, funs(min(., na.rm = TRUE))) %>%
-    gather("field", "min_date")
+    summarise(across(where(~ inherits(., "Date")), ~ min(., na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "min_date")
 
   max_date <- parse_df %>%
-    summarise_if(is.Date, funs(max(., na.rm = TRUE))) %>%
-    gather("field", "max_date")
+    summarise(across(where(~ inherits(., "Date")), ~ max(., na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "max_date")
 
   perc_na_date <- parse_df %>%
-    summarise_if(is.Date, funs(round(mean(is.na(.)), digits = 3))) %>%
-    gather("field", "perc_na_date")
+    summarise(across(where(~ inherits(., "Date")), ~ mean(is.na(.), na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_date")
 
   date_df <- reduce(list(min_date, max_date, perc_na_date), full_join, by = "field")
 
   # Summarize binary columns
   ratio_binary <- parse_df %>%
-    summarise_if(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2),
-                 funs(round(mean(., na.rm = TRUE), digits = 3))) %>%
-    gather("field", "ratio_binary")
+    summarise(across(where(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2)),
+                     ~ mean(., na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "ratio_binary")
 
   perc_na_binary <- parse_df %>%
-    summarise_if(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2),
-                 funs(round(mean(is.na(.)), digits = 3))) %>%
-    gather("field", "perc_na_binary")
+    summarise(across(where(~ is.logical(.) || (is.numeric(.) && n_distinct(., na.rm = TRUE) <= 2)),
+                     ~ mean(is.na(.), na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_binary")
 
   binary_df <- full_join(ratio_binary, perc_na_binary, by = "field")
 
   # Summarize character columns
   values_char <- parse_df %>%
-    summarise_if(is.character, funs(paste(unique(.), collapse = ", "))) %>%
-    gather("field", "values_char")
+    summarise(across(where(is.character), ~ paste(unique(.), collapse = ", "))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "values_char")
 
   distinct_char <- parse_df %>%
-    summarise_if(is.character, funs(n_distinct(., na.rm = TRUE))) %>%
-    gather("field", "distinct_char")
+    summarise(across(where(is.character), ~ n_distinct(.))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_char")
 
   perc_na_char <- parse_df %>%
-    summarise_if(is.character, funs(round(mean(is.na(.)), digits = 3))) %>%
-    gather("field", "perc_na_char")
+    summarise(across(where(is.character), ~ mean(is.na(.), na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_char")
 
   char_df <- reduce(list(values_char, distinct_char, perc_na_char), full_join, by = "field")
 
   # Summarize factor columns
   levels_factor <- parse_df %>%
-    summarise_if(is.factor, funs(paste(levels(.), collapse = ", "))) %>%
-    gather("field", "levels_factor")
+    summarise(across(where(is.factor), ~ paste(levels(.), collapse = ", "))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "levels_factor")
 
   distinct_factor <- parse_df %>%
-    summarise_if(is.factor, funs(n_distinct(.))) %>%
-    gather("field", "distinct_factor")
+    summarise(across(where(is.factor), ~ n_distinct(.))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "distinct_factor")
 
   perc_na_factor <- parse_df %>%
-    summarise_if(is.factor, funs(round(mean(is.na(.)), digits = 3))) %>%
-    gather("field", "perc_na_factor")
+    summarise(across(where(is.factor), ~ mean(is.na(.), na.rm = TRUE))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_factor")
 
   factor_df <- reduce(list(levels_factor, distinct_factor, perc_na_factor), full_join, by = "field")
 
   # Summarize numeric columns
   summary_numeric <- parse_df %>%
-    summarise_if(is.numeric,
-                 funs(mean = round(mean(., na.rm = TRUE), 3),
-                      min = round(min(., na.rm = TRUE), 3),
-                      max = round(max(., na.rm = TRUE), 3),
-                      median = round(median(., na.rm = TRUE), 3),
-                      q25 = round(quantile(., 0.25, na.rm = TRUE), 3),
-                      q75 = round(quantile(., 0.75, na.rm = TRUE), 3),
-                      na_perc = round(mean(is.na(.)), 3))) %>%
-    gather("field", "summary_numeric")
+    summarise(across(where(is.numeric), list(
+      mean = ~ mean(., na.rm = TRUE),
+      min = ~ min(., na.rm = TRUE),
+      max = ~ max(., na.rm = TRUE),
+      median = ~ median(., na.rm = TRUE),
+      q25 = ~ quantile(., 0.25, na.rm = TRUE),
+      q75 = ~ quantile(., 0.75, na.rm = TRUE),
+      na_perc = ~ mean(is.na(.), na.rm = TRUE)
+    ))) %>%
+    pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
 
   # Handle outcomes for surgeons
   if (length(ind_outcomes) > 0) {
