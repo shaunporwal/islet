@@ -28,7 +28,8 @@ compare_df <- function(old_data = NULL, new_data = NULL, suffix_term = "", ind_o
     # Clean up dummy rows and return analysis of old dataset only
     old_data <- lapply(old_data, function(df) {
       if (!is.null(df$field)) {
-        df <- df %>% filter(!field %in% c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")) %>%
+        df <- df %>%
+          filter(!.data$field %in% c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")) %>%
           ungroup()
       }
       return(df)
@@ -79,7 +80,7 @@ compare_df <- function(old_data = NULL, new_data = NULL, suffix_term = "", ind_o
   final_df_list <- lapply(final_df_list, function(df) {
     if (!is.atomic(df) && !is.null(df$field)) {
       df <- df %>%
-        filter(!field %in% c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")) %>%
+        filter(!.data$field %in% c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")) %>%
         ungroup()
     }
     return(df)
