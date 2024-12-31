@@ -20,6 +20,7 @@
 #' }
 #' @export
 parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon", add_years = FALSE) {
+  # Ensure the dataframe is ungrouped
   parse_df <- parse_df %>% ungroup()
 
   # Add dummy values to ensure functions work with empty datasets
@@ -41,7 +42,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(~ inherits(., "Date")), ~ mean(is.na(.), na.rm = TRUE))) %>%
     tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_date")
 
-  date_df <- purrr::reduce(list(min_date, max_date, perc_na_date), full_join, by = "field")
+  date_df <- full_join(full_join(min_date, max_date, by = "field"), perc_na_date, by = "field")
 
   # Summarize binary columns
   ratio_binary <- parse_df %>%
@@ -69,7 +70,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(is.character), ~ mean(is.na(.), na.rm = TRUE))) %>%
     tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_char")
 
-  char_df <- purrr::reduce(list(values_char, distinct_char, perc_na_char), full_join, by = "field")
+  char_df <- full_join(full_join(values_char, distinct_char, by = "field"), perc_na_char, by = "field")
 
   # Summarize factor columns
   levels_factor <- parse_df %>%
@@ -84,7 +85,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     summarise(across(where(is.factor), ~ mean(is.na(.), na.rm = TRUE))) %>%
     tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "perc_na_factor")
 
-  factor_df <- purrr::reduce(list(levels_factor, distinct_factor, perc_na_factor), full_join, by = "field")
+  factor_df <- full_join(full_join(levels_factor, distinct_factor, by = "field"), perc_na_factor, by = "field")
 
   # Summarize numeric columns
   summary_numeric <- parse_df %>%
@@ -99,20 +100,24 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), sur
     ))) %>%
     tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
 
-  # Handle outcomes for surgeons
-  if (length(ind_outcomes) > 0 && any(ind_outcomes != "")) {
-    if (!all(ind_outcomes %in% names(parse_df))) {
-      stop("Specified outcomes are missing in the dataset.")
+  # Validate and summarize surgeon-specific outcomes
+  if (ind_outcomes[[1]] != "") {
+    if (!all(ind_outcomes %in% colnames(parse_df))) {
+      stop("Some specified outcomes are missing in the dataset.")
+    }
+    if (!(surg_col %in% colnames(parse_df))) {
+      stop("The specified surgeon column is missing in the dataset.")
     }
     surg_df <- parse_df %>%
+      select(all_of(c(surg_col, ind_outcomes))) %>%
       group_by(!!sym(surg_col)) %>%
       summarise(across(all_of(ind_outcomes), mean, na.rm = TRUE)) %>%
       rename(surgeon = !!sym(surg_col))
   } else {
-    surg_df <- NULL
+    surg_df <- data.frame(surgeon = character(0))
   }
 
-  # Return a list of summaries
+  # Compile results into a list
   results <- list(
     date_df = date_df,
     binary_df = binary_df,
