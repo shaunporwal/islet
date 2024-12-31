@@ -100,30 +100,6 @@ binary, date, and other data types. Supports year-based summaries and surgeon-sp
 
 </dl></div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load example data</span></span></span>
-<span class="r-in"><span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Add a simulated surgeon column and a date column</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> <span class="co"># Ensure reproducibility</span></span></span>
-<span class="r-in"><span><span class="va">my_data</span><span class="op">$</span><span class="va">surgeon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">my_data</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">my_data</span><span class="op">$</span><span class="va">outcome1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Parse the dataframe without year summaries</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">parse_function</span><span class="op">(</span>parse_df <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in reduce(list(min_date, max_date, perc_na_date), full_join, by = "field"):</span> could not find function "reduce"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Parse the dataframe with year-based summaries</span></span></span>
-<span class="r-in"><span><span class="va">results_with_years</span> <span class="op">&lt;-</span> <span class="fu">parse_function</span><span class="op">(</span>parse_df <span class="op">=</span> <span class="va">my_data</span>, add_years <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in reduce(list(min_date, max_date, perc_na_date), full_join, by = "field"):</span> could not find function "reduce"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Parse the dataframe with specific outcomes</span></span></span>
-<span class="r-in"><span><span class="va">results_with_outcomes</span> <span class="op">&lt;-</span> <span class="fu">parse_function</span><span class="op">(</span>parse_df <span class="op">=</span> <span class="va">my_data</span>, ind_outcomes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"outcome1"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in reduce(list(min_date, max_date, perc_na_date), full_join, by = "field"):</span> could not find function "reduce"</span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

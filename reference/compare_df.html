@@ -100,33 +100,6 @@ and surgeon-specific fields. Handles comparisons with or without a new dataset.<
 
 </dl></div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load example data</span></span></span>
-<span class="r-in"><span><span class="va">old_data</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
-<span class="r-in"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Simulate fields to match the expected structure</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> <span class="co"># Ensure reproducibility</span></span></span>
-<span class="r-in"><span><span class="va">old_data</span><span class="op">$</span><span class="va">field</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">old_data</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">new_data</span><span class="op">$</span><span class="va">field</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">new_data</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">old_data</span><span class="op">$</span><span class="va">outcome1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">old_data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">new_data</span><span class="op">$</span><span class="va">outcome1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">new_data</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Run the function</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">compare_df</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  old_data <span class="op">=</span> <span class="va">old_data</span>,</span></span>
-<span class="r-in"><span>  new_data <span class="op">=</span> <span class="va">new_data</span>,</span></span>
-<span class="r-in"><span>  ind_outcomes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"outcome1"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  surg_col <span class="op">=</span> <span class="st">"field"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in reduce(list(min_date, max_date, perc_na_date), full_join, by = "field"):</span> could not find function "reduce"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Access numeric comparison results</span></span></span>
-<span class="r-in"><span><span class="va">numeric_results</span> <span class="op">&lt;-</span> <span class="va">results</span><span class="op">$</span><span class="va">numeric_join</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'results' not found</span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
