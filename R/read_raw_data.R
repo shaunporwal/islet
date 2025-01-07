@@ -2,8 +2,8 @@
 #'
 #' This function reads a CSV file and performs several cleaning steps:
 #' 1. Converts column names to uppercase.
-#' 2. Attempts to convert character columns to date format.
-#' 3. Converts character columns to uppercase.
+#' 2. Attempts to parse character columns as dates in ymd format.
+#' 3. Converts character columns to uppercase if not parsed as dates.
 #'
 #' @param file A string specifying the path to the CSV file to be read.
 #'
@@ -20,17 +20,16 @@ read_raw_data <- function(file) {
     janitor::clean_names(case = "all_caps") %>%
     mutate(across(where(is.character), function(col) {
       tryCatch({
-        converted <- as.Date(col)
+        converted <- lubridate::ymd(col)
         if (all(is.na(converted))) {
-          return(col)
+          return(toupper(col))
         } else {
           return(converted)
         }
       }, error = function(e) {
-        return(col)
+        return(toupper(col))
       })
-    })) %>%
-    mutate(across(where(is.character), toupper))
+    }))
 
   return(df_raw_data)
 }

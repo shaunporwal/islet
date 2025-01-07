@@ -19,6 +19,7 @@ Config/testthat/edition: 3
 Imports: 
     dplyr,
     janitor,
+    lubridate,
     purrr,
     readr,
     stringr,

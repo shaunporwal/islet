@@ -16,8 +16,8 @@ A data frame with cleaned column names and data.
 This function reads a CSV file and performs several cleaning steps:
 \enumerate{
 \item Converts column names to uppercase.
-\item Attempts to convert character columns to date format.
-\item Converts character columns to uppercase.
+\item Attempts to parse character columns as dates in ymd format.
+\item Converts character columns to uppercase if not parsed as dates.
 }
 }
 \examples{

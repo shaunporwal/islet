@@ -41,3 +41,5 @@ attr(trial$death, "label") <- "Patient Died"
 attr(trial$ttdeath, "label") <- "Months to Death/Censor"
 
 usethis::use_data(trial, overwrite = TRUE)
+
+trial |> readr::write_csv(file = here::here('data/trial.csv'))
