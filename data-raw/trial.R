@@ -19,25 +19,25 @@ trial <-
     response = runif(n) < response_prob,
     ttdeath_true =
       exp(1 + 0.2 * response +
-            -0.1 * as.numeric(stage) +
-            -0.1 * as.numeric(grade) +
-            rnorm(n, sd = 0.5)) * 12,
+        -0.1 * as.numeric(stage) +
+        -0.1 * as.numeric(grade) +
+        rnorm(n, sd = 0.5)) * 12,
     death = ifelse(ttdeath_true <= 24, 1L, 0L),
     ttdeath = pmin(ttdeath_true, 24) |> round(digits = 2),
-    
+
     # New columns added below:
     visit_date = sample(seq.Date(as.Date("2020-01-01"), as.Date("2022-01-01"), by = "days"), n, replace = TRUE), # Date
     follow_up_date = sample(seq.Date(as.Date("2022-01-02"), as.Date("2024-01-01"), by = "days"), n, replace = TRUE), # Date
-    
+
     has_side_effects = sample(c(TRUE, FALSE), n, replace = TRUE), # Logical
     enrolled_in_study = sample(c(TRUE, FALSE), n, replace = TRUE), # Logical
-    
+
     bmi = round(rnorm(n, mean = 25, sd = 4), 1), # Numeric
     systolic_bp = round(rnorm(n, mean = 120, sd = 15)), # Numeric
-    
+
     patient_id = paste0("ID-", sprintf("%03d", seq(1, n))), # Character
     hospital = sample(c("Hospital A", "Hospital B", "Hospital C"), n, replace = TRUE), # Character
-    
+
     insurance = sample(c("Private", "Medicaid", "Medicare"), n, replace = TRUE) |> factor(), # Factor
     smoking_status = sample(c("Non-smoker", "Former smoker", "Current smoker"), n, replace = TRUE) |> factor() # Factor
   ) |>
@@ -62,4 +62,4 @@ attr(trial$hospital, "label") <- "Hospital"
 attr(trial$insurance, "label") <- "Insurance Type"
 attr(trial$smoking_status, "label") <- "Smoking Status"
 
-trial |> readr::write_csv(file = here::here('data/trial.csv'))
+trial |> readr::write_csv(file = here::here("data/trial.csv"))
