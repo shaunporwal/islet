@@ -98,23 +98,31 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), gro
                                   perc_na_factor, by = "field")
   }
   
-  # Check for and summarize numeric columns
+  # Check for and summarize numeric columns - FIXED THIS SECTION
   numeric_cols <- names(parse_df)[sapply(parse_df, is.numeric)]
+  numeric_cols <- setdiff(numeric_cols, binary_cols)  # Exclude binary columns
+  
   if (length(numeric_cols) > 0) {
-    results$summary_numeric <- parse_df %>%
+    summary_stats <- parse_df %>%
       summarise(across(all_of(numeric_cols), list(
-        mean = ~ mean(., na.rm = TRUE),
-        min = ~ min(., na.rm = TRUE),
-        max = ~ max(., na.rm = TRUE),
-        median = ~ median(., na.rm = TRUE),
-        q25 = ~ quantile(., 0.25, na.rm = TRUE),
-        q75 = ~ quantile(., 0.75, na.rm = TRUE),
-        na_perc = ~ mean(is.na(.), na.rm = TRUE)
-      ))) %>%
-      tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
+        mean = ~mean(., na.rm = TRUE),
+        min = ~min(., na.rm = TRUE),
+        max = ~max(., na.rm = TRUE),
+        median = ~median(., na.rm = TRUE),
+        q25 = ~quantile(., 0.25, na.rm = TRUE),
+        q75 = ~quantile(., 0.75, na.rm = TRUE),
+        na_perc = ~mean(is.na(.))
+      )))
+    
+    # Restructure the output to match expected format
+    results$summary_numeric <- data.frame(
+      field = rep(numeric_cols, each = 7),
+      statistic = rep(c("mean", "min", "max", "median", "q25", "q75", "na_perc"), times = length(numeric_cols)),
+      value = unlist(summary_stats)
+    )
   }
   
-  # Update the function's group handling to use newer dplyr syntax
+  # Handle group-specific outcomes
   if (ind_outcomes[[1]] != "" && !is.null(group_col)) {
     if (!all(ind_outcomes %in% colnames(parse_df))) {
       stop("Some specified outcomes are missing in the dataset.")
