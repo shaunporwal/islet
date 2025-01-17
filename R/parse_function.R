@@ -114,7 +114,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), gro
       tidyr::pivot_longer(cols = everything(), names_to = "field", values_to = "summary_numeric")
   }
   
-  # Handle group-specific outcomes
+  # Update the function's group handling to use newer dplyr syntax
   if (ind_outcomes[[1]] != "" && !is.null(group_col)) {
     if (!all(ind_outcomes %in% colnames(parse_df))) {
       stop("Some specified outcomes are missing in the dataset.")
@@ -125,7 +125,7 @@ parse_function <- function(parse_df, suffix_term = "", ind_outcomes = c(""), gro
     results$group_df <- parse_df %>%
       select(all_of(c(group_col, ind_outcomes))) %>%
       group_by(!!sym(group_col)) %>%
-      summarise(across(all_of(ind_outcomes), mean, na.rm = TRUE)) %>%
+      summarise(across(all_of(ind_outcomes), \(x) mean(x, na.rm = TRUE))) %>%
       rename(group = !!sym(group_col))
   } else {
     results$group_df <- data.frame(group = character(0))
