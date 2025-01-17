@@ -21,12 +21,11 @@
 #' }
 #' @export
 compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
-  
   # Ensure group_col is provided
   if (missing(group_col) || is.null(group_col)) {
     stop("The 'group_col' parameter is required and must be specified.")
   }
-  
+
   # Helper function to clean dummy rows
   clean_dummy_rows <- function(df) {
     dummy_fields <- c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")
@@ -37,27 +36,47 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     }
     return(df)
   }
-  
+
   # Parse old dataset
-  old_parsed <- parse_function(old_data, suffix_term = "old", ind_outcomes = ind_outcomes, group_col = group_col, add_years = add_years)
+  old_parsed <- parse_function(
+    parse_df = old_data,
+    suffix_term = "old",
+    ind_outcomes = ind_outcomes,
+    group_col = group_col,
+    add_years = add_years
+  )
   old_parsed <- lapply(old_parsed, clean_dummy_rows)
-  
-  # If no new dataset, return the analysis of the old dataset
+
+  # If no new dataset, include all expected components as NULL where applicable
   if (is.null(new_data)) {
-    return(old_parsed)
+    complete_result <- list(
+      numeric_join = old_parsed$summary_numeric %||% NULL,
+      factor_join = old_parsed$factor_df %||% NULL,
+      char_join = old_parsed$char_df %||% NULL,
+      bin_join = old_parsed$binary_df %||% NULL,
+      date_join = old_parsed$date_df %||% NULL,
+      group_join = old_parsed$group_df %||% NULL
+    )
+    return(complete_result)
   }
-  
+
   # Parse new dataset
-  new_parsed <- parse_function(new_data, suffix_term = "new", ind_outcomes = ind_outcomes, group_col = group_col, add_years = add_years)
+  new_parsed <- parse_function(
+    parse_df = new_data,
+    suffix_term = "new",
+    ind_outcomes = ind_outcomes,
+    group_col = group_col,
+    add_years = add_years
+  )
   new_parsed <- lapply(new_parsed, clean_dummy_rows)
-  
+
   # Generalized merging function
   merge_parsed_data <- function(old_df, new_df, by_col = "field") {
     if (is.null(old_df) || is.null(new_df)) return(NULL)
     suppressWarnings(full_join(old_df, new_df, by = by_col))
   }
-  
-  # Merge each type of data
+
+  # Merge each type of data, ensuring all components are included
   comparison_list <- list(
     numeric_join = merge_parsed_data(old_parsed$summary_numeric, new_parsed$summary_numeric),
     factor_join = merge_parsed_data(old_parsed$factor_df, new_parsed$factor_df),
@@ -66,9 +85,19 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     date_join = merge_parsed_data(old_parsed$date_df, new_parsed$date_df),
     group_join = merge_parsed_data(old_parsed$group_df, new_parsed$group_df, by_col = group_col)
   )
-  
-  # Ensure consistency in column order where applicable
-  comparison_list <- lapply(comparison_list, clean_dummy_rows)
-  
-  return(comparison_list)
+
+  # Ensure the output order is consistent and logical, even if some components are NULL
+  ordered_comparison_list <- comparison_list[c(
+    "numeric_join",
+    "factor_join",
+    "char_join",
+    "bin_join",
+    "date_join",
+    "group_join"
+  )]
+
+  # Guarantee all elements are present as NULL if not available
+  ordered_comparison_list <- lapply(ordered_comparison_list, function(x) if (is.null(x)) NULL else x)
+
+  return(ordered_comparison_list)
 }

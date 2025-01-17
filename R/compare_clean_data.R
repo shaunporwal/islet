@@ -33,10 +33,10 @@ compare_clean_data <- function(
 ) {
   # Read and select specific columns
   old_data <- suppressWarnings(
-    readr::read_csv(file = df_old_path, show_col_types = FALSE) |> select(all_of(final_vars_set))
+    read_raw_data(file = df_old_path) |> select(all_of(final_vars_set))
   )
   new_data <- suppressWarnings(
-    readr::read_csv(file = df_new_path, show_col_types = FALSE) |> select(all_of(final_vars_set))
+    read_raw_csv(file = df_new_path) |> select(all_of(final_vars_set))
   )
 
   # Ensure the date column exists in the datasets
