@@ -8,7 +8,7 @@ parse_function(
   parse_df,
   suffix_term = "",
   ind_outcomes = c(""),
-  surg_col = "surgeon",
+  group_col = NULL,
   add_years = FALSE
 )
 }
@@ -17,24 +17,26 @@ parse_function(
 
 \item{suffix_term}{Character. Suffix to append to parsed column names (default: "").}
 
-\item{ind_outcomes}{Character vector. Individual outcomes for parsing and surgeon-specific summaries (default: "").}
+\item{ind_outcomes}{Character vector. Individual outcomes for parsing and group-specific summaries (default: "").}
 
-\item{surg_col}{Character. Column name representing surgeons (default: "surgeon").}
+\item{group_col}{Character. Column name representing the grouping variable (default: NULL).}
 
 \item{add_years}{Logical. Include year-based summaries in the output (default: FALSE).}
 }
 \value{
-A list of dataframes summarizing the input dataset:
+A list of dataframes summarizing the input dataset. Only includes summaries for column types
+that are present in the input data:
 \describe{
-\item{date_df}{Summaries for date columns (e.g., min, max, NA percentages).}
-\item{binary_df}{Summaries for binary columns (e.g., ratio of TRUE, NA percentages).}
-\item{char_df}{Summaries for character columns (e.g., unique values, NA percentages).}
-\item{factor_df}{Summaries for factor columns (e.g., unique levels, NA percentages).}
-\item{summary_numeric}{Summaries for numeric columns (e.g., mean, quartiles, NA percentages).}
-\item{surg_df}{Summaries by surgeon for specified outcomes (if applicable).}
+\item{date_df}{Summaries for date columns (if present).}
+\item{binary_df}{Summaries for binary columns (if present).}
+\item{char_df}{Summaries for character columns (if present).}
+\item{factor_df}{Summaries for factor columns (if present).}
+\item{summary_numeric}{Summaries for numeric columns (if present).}
+\item{group_df}{Summaries by group for specified outcomes (if applicable).}
 }
 }
 \description{
 Processes a dataframe to generate summaries for numeric, factor, character,
-binary, date, and other data types. Supports year-based summaries and surgeon-specific outcomes.
+binary, date, and other data types. Supports year-based summaries and group-specific outcomes.
+Will handle cases where certain column types are not present in the dataset.
 }

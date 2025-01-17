@@ -4,10 +4,14 @@
 \alias{read_raw_data}
 \title{Read and Clean Raw Data}
 \usage{
-read_raw_data(file)
+read_raw_data(file, col_caps = TRUE, str_caps = TRUE)
 }
 \arguments{
 \item{file}{A string specifying the path to the CSV file to be read.}
+
+\item{col_caps}{Logical. Whether to convert column names to uppercase. Default is TRUE.}
+
+\item{str_caps}{Logical. Whether to convert string column values to uppercase. Default is TRUE.}
 }
 \value{
 A data frame with cleaned column names and data.
@@ -15,14 +19,15 @@ A data frame with cleaned column names and data.
 \description{
 This function reads a CSV file and performs several cleaning steps:
 \enumerate{
-\item Converts column names to uppercase.
+\item Optionally converts column names to uppercase using janitor::clean_names.
 \item Attempts to parse character columns as dates in ymd format.
-\item Converts character columns to uppercase if not parsed as dates.
+\item Optionally converts character columns to uppercase if not parsed as dates.
 }
 }
 \examples{
 \dontrun{
   # Assuming 'data.csv' contains appropriate data
   cleaned_data <- read_raw_data("data.csv")
+  raw_data <- read_raw_data("data.csv", col_caps = FALSE, str_caps = FALSE)
 }
 }
