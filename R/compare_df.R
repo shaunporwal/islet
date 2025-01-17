@@ -20,7 +20,6 @@
 #' }
 #' @export
 compare_df <- function(old_data = NULL, new_data = NULL, suffix_term = "", ind_outcomes = c(""), surg_col = "surgeon") {
-
   # Analyze the old dataset
   if (is.null(new_data)) {
     old_data <- parse_function(old_data, "old", ind_outcomes, surg_col, add_years = TRUE)

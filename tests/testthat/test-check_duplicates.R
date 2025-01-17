@@ -1,4 +1,4 @@
-test_that("Test check_duplicates",{
+test_that("Test check_duplicates", {
   # Generate sample data
   data_df <- data.frame(
     id = c(1, 2, 3, 4, 5, 5, 6, 7, 8, 8),
@@ -8,8 +8,10 @@ test_that("Test check_duplicates",{
 
   # Test 1: Check for exact duplicates with default options
   expect_equal(
-    check_duplicates(data_df = data_df,
-                     print_dups = FALSE),
+    check_duplicates(
+      data_df = data_df,
+      print_dups = FALSE
+    ),
     data.frame(
       id = c(5, 8),
       name = c("Eve", "Henry"),
@@ -23,7 +25,7 @@ test_that("Test check_duplicates",{
     check_duplicates(data_df, group_by_vars = "name"),
     data.frame(
       id = c(5, 8, 1, 2),
-      name = c("Eve", "Henry", 'Alice', 'Alice'),
+      name = c("Eve", "Henry", "Alice", "Alice"),
       income = c(90000, 120000, 60000, 60000)
     ),
     info = "Duplicates within groups should be identified"

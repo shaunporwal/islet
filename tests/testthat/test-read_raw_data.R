@@ -35,6 +35,3 @@ test_that("All data is in uppercase", {
 
   unlink(temp_file)
 })
-
-
-
