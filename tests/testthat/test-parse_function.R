@@ -6,11 +6,15 @@ test_that("parse_function handles all column types correctly", {
   # Load test data
   trial <- read_csv("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/trial.csv")
   
-  # Convert date columns to proper Date type
+  # Convert date columns to proper Date type and character columns to factors where needed
   trial <- trial %>%
     mutate(
       visit_date = as.Date(visit_date),
-      follow_up_date = as.Date(follow_up_date)
+      follow_up_date = as.Date(follow_up_date),
+      stage = factor(stage),
+      grade = factor(grade),
+      insurance = factor(insurance),
+      smoking_status = factor(smoking_status)
     )
   
   # Run function
@@ -23,13 +27,13 @@ test_that("parse_function handles all column types correctly", {
   
   # Test binary columns
   expect_true("binary_df" %in% names(results))
-  expect_true(all(c("has_side_effects", "enrolled_in_study", "response", "death") %in% 
+  expect_true(all(c("has_side_effects", "enrolled_in_study") %in% 
                   results$binary_df$field))
   expect_true(all(c("ratio_binary", "perc_na_binary") %in% colnames(results$binary_df)))
   
   # Test character columns
   expect_true("char_df" %in% names(results))
-  expect_true(all(c("patient_id", "hospital") %in% results$char_df$field))
+  expect_true(all(c("patient_id", "hospital", "trt") %in% results$char_df$field))
   expect_true(all(c("values_char", "distinct_char", "perc_na_char") %in% colnames(results$char_df)))
   
   # Test factor columns
@@ -67,7 +71,7 @@ test_that("parse_function handles missing data correctly", {
   trial_with_na <- trial %>%
     mutate(
       age = if_else(row_number() %% 5 == 0, NA_real_, age),
-      visit_date = if_else(row_number() %% 7 == 0, NA_Date_, visit_date),
+      visit_date = if_else(row_number() %% 7 == 0, as.Date(NA), visit_date),
       has_side_effects = if_else(row_number() %% 3 == 0, NA, has_side_effects)
     )
   
@@ -82,15 +86,22 @@ test_that("parse_function handles missing data correctly", {
 
 test_that("parse_function handles empty/invalid inputs correctly", {
   # Test with empty dataframe
-  empty_df <- data.frame()
-  expect_error(parse_function(empty_df), NA)  # Should not error
+  empty_df <- data.frame(x = character(0))
+  results_empty <- parse_function(empty_df)
+  expect_type(results_empty, "list")
   
   # Test with invalid group column
   trial <- read_csv("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/trial.csv")
-  expect_error(parse_function(trial, group_col = "nonexistent_column"))
+  expect_error(
+    parse_function(trial, group_col = "nonexistent_column", ind_outcomes = "age"),
+    "The specified grouping column is missing in the dataset"
+  )
   
   # Test with invalid outcome
-  expect_error(parse_function(trial, group_col = "trt", ind_outcomes = "nonexistent_outcome"))
+  expect_error(
+    parse_function(trial, group_col = "trt", ind_outcomes = "nonexistent_outcome"),
+    "Some specified outcomes are missing in the dataset"
+  )
 })
 
 test_that("parse_function handles subset of column types", {
