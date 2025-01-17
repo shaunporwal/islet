@@ -43,7 +43,7 @@ test_that("parse_function handles all column types correctly", {
 
   # Test numeric columns
   expect_true("summary_numeric" %in% names(results))
-  expect_true(all(c("age", "marker", "ttdeath", "bmi", "systolic_bp") %in%
+  expect_true(all(c("age", "marker", "ttdeath", "bmi", "systolic") %in%
     unique(gsub("_.*$", "", results$summary_numeric$field))))
 })
 
