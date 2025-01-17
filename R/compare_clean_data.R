@@ -36,7 +36,7 @@ compare_clean_data <- function(
     read_raw_data(file = df_old_path) |> select(all_of(final_vars_set))
   )
   new_data <- suppressWarnings(
-    read_raw_csv(file = df_new_path) |> select(all_of(final_vars_set))
+    read_raw_data(file = df_new_path) |> select(all_of(final_vars_set))
   )
 
   # Ensure the date column exists in the datasets

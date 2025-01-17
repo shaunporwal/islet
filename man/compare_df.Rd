@@ -5,11 +5,12 @@
 \title{Compare Dataframes}
 \usage{
 compare_df(
-  old_data = NULL,
+  old_data,
   new_data = NULL,
   suffix_term = "",
   ind_outcomes = c(""),
-  surg_col = "surgeon"
+  group_col,
+  add_years = FALSE
 )
 }
 \arguments{
@@ -21,7 +22,9 @@ compare_df(
 
 \item{ind_outcomes}{Character vector. Individual outcomes to summarize (default: "").}
 
-\item{surg_col}{Character. Column name representing surgeons (default: "surgeon").}
+\item{group_col}{Character. Column name representing the grouping variable (required).}
+
+\item{add_years}{Logical. Whether to include year-based summaries (default: FALSE).}
 }
 \value{
 A list of dataframes containing the comparison results:
@@ -31,10 +34,10 @@ A list of dataframes containing the comparison results:
 \item{char_join}{Merged character fields.}
 \item{bin_join}{Merged binary fields.}
 \item{date_join}{Merged date fields.}
-\item{surg_join}{Merged surgeon-specific summaries.}
+\item{group_join}{Merged group-specific summaries.}
 }
 }
 \description{
 Compares two datasets, summarizing numeric, factor, character, binary, date,
-and surgeon-specific fields. Handles comparisons with or without a new dataset.
+and group-specific fields. Handles comparisons with or without a new dataset.
 }

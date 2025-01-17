@@ -31,7 +31,7 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     dummy_fields <- c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")
     if (!is.atomic(df) && "field" %in% colnames(df)) {
       df <- df %>%
-        filter(!field %in% dummy_fields) %>%
+        filter(!.data$field %in% dummy_fields) %>%
         ungroup()
     }
     return(df)
