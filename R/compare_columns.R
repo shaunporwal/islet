@@ -9,6 +9,7 @@
 #' @return A list containing comparison results and filtered dataframes
 #' @importFrom gt gt tab_header cols_label fmt_number tab_style cell_borders px cells_body
 #' @importFrom rlang .data
+#' @importFrom rlang %||%
 #' @export
 compare_columns <- function(df1, df2, df1_name = "df1", df2_name = "df2", group_by_col = NULL) {
   # Input validation
