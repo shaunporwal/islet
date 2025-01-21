@@ -14,13 +14,17 @@ RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tibble
 Config/testthat/edition: 3
 Imports: 
     dplyr,
+    gt,
     janitor,
     lubridate,
+    magrittr,
     purrr,
+    rlang,
     stats,
     stringr,
     tidyr
