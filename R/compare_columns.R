@@ -8,7 +8,6 @@
 #'
 #' @return A list containing comparison results and filtered dataframes
 #' @importFrom gt gt tab_header cols_label fmt_number tab_style cell_borders px cells_body
-#' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
 compare_columns <- function(df1, df2, df1_name = "df1", df2_name = "df2", group_by_col = NULL) {
@@ -64,20 +63,20 @@ compare_columns <- function(df1, df2, df1_name = "df1", df2_name = "df2", group_
   )
   
   # Create and print summary table
-  summary_table <- summary_df %>%
-    gt() %>%
+  summary_table <- summary_df |>
+    gt() |>
     tab_header(
       title = "DataFrame Comparison Summary"
-    ) %>%
+    ) |>
     cols_label(
       Metric = "Metric",
       df1_value = df1_name,
       df2_value = df2_name
-    ) %>%
+    ) |>
     fmt_number(
       columns = c(.data$df1_value, .data$df2_value),
       decimals = 0
-    ) %>%
+    ) |>
     tab_style(
       style = cell_borders(
         sides = c("top", "bottom"),
@@ -88,11 +87,11 @@ compare_columns <- function(df1, df2, df1_name = "df1", df2_name = "df2", group_
     )
   
   # Create and print columns table
-  cols_table <- cols_df %>%
-    gt() %>%
+  cols_table <- cols_df |>
+    gt() |>
     tab_header(
       title = "Column Details"
-    ) %>%
+    ) |>
     tab_style(
       style = cell_borders(
         sides = c("top", "bottom"),

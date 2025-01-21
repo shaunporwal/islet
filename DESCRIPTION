@@ -22,7 +22,6 @@ Imports:
     gt,
     janitor,
     lubridate,
-    magrittr,
     purrr,
     rlang,
     stats,
