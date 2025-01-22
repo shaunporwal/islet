@@ -2,30 +2,43 @@
 % Please edit documentation in R/compare_columns.R
 \name{compare_columns}
 \alias{compare_columns}
-\title{Compare and Analyze Two Data Frames}
+\title{Compare Column Names Between Two Objects}
 \usage{
 compare_columns(
-  df1,
-  df2,
-  df1_name = "df1",
-  df2_name = "df2",
+  obj1,
+  obj2,
+  obj1_name = "obj1",
+  obj2_name = "obj2",
   group_by_col = NULL
 )
 }
 \arguments{
-\item{df1}{A data frame or tibble}
+\item{obj1}{A data frame, tibble, or vector of column names}
 
-\item{df2}{A data frame or tibble}
+\item{obj2}{A data frame, tibble, or vector of column names}
 
-\item{df1_name}{Character string naming the first data frame (default: "df1")}
+\item{obj1_name}{Character string naming the first object (default: "obj1")}
 
-\item{df2_name}{Character string naming the second data frame (default: "df2")}
+\item{obj2_name}{Character string naming the second object (default: "obj2")}
 
 \item{group_by_col}{Character string specifying column name for grouping (default: NULL)}
 }
 \value{
-A list containing comparison results and filtered dataframes
+A list containing:
+\itemize{
+\item filtered_objects: List of objects containing unique columns
+\item summary_data: List of comparison statistics
+\item tables: GT tables showing comparison results
+}
 }
 \description{
-Compare and Analyze Two Data Frames
+Compares column names between two objects (data frames or vectors of column names)
+and provides a detailed summary of unique and shared columns
+}
+\examples{
+# Compare column names of two data frames
+compare_columns(mtcars, iris)
+
+# Compare vectors of column names
+compare_columns(names(mtcars), names(iris))
 }
