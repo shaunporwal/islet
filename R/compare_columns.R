@@ -134,10 +134,6 @@ compare_columns <- function(obj1, obj2, obj1_name = "obj1", obj2_name = "obj2", 
       locations = cells_body()
     )
 
-  # Print tables
-  print(summary_table)
-  print(cols_table)
-
   # Store results
   summary_data <- list(
     unique_cols = list(
