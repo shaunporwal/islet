@@ -1,32 +1,42 @@
 #' Compare Dataframes
 #'
 #' Compares two datasets, summarizing numeric, factor, character, binary, date,
-#' and group-specific fields. Handles comparisons with or without a new dataset.
+#' and group-specific fields. Handles single dataset analysis or comparison between two datasets.
 #'
-#' @param old_data Dataframe. The old dataset to compare.
-#' @param new_data Dataframe. The new dataset to compare. If NULL, only the old dataset is analyzed.
-#' @param suffix_term Character. Suffix to append to parsed column names (default: "").
-#' @param ind_outcomes Character vector. Individual outcomes to summarize (default: "").
-#' @param group_col Character. Column name representing the grouping variable (required).
-#' @param add_years Logical. Whether to include year-based summaries (default: FALSE).
+#' @param old_data Dataframe containing the base dataset for comparison
+#' @param new_data Optional dataframe to compare against old_data. If NULL, only old_data is analyzed
+#' @param suffix_term Character string to append to parsed column names (default: "")
+#' @param ind_outcomes Character vector of individual outcomes to summarize (default: "")
+#' @param group_col Required character string specifying the grouping variable column name
+#' @param add_years Logical indicating whether to include year-based summaries (default: FALSE)
 #'
-#' @return A list of dataframes containing the comparison results:
+#' @return A list containing:
 #' \describe{
-#'   \item{numeric_join}{Merged numeric fields.}
-#'   \item{factor_join}{Merged factor fields.}
-#'   \item{char_join}{Merged character fields.}
-#'   \item{bin_join}{Merged binary fields.}
-#'   \item{date_join}{Merged date fields.}
-#'   \item{group_join}{Merged group-specific summaries.}
+#'   \item{numeric_join}{Numeric field comparisons}
+#'   \item{factor_join}{Factor level comparisons}
+#'   \item{char_join}{Character field comparisons}
+#'   \item{bin_join}{Binary field comparisons}
+#'   \item{date_join}{Date field comparisons}
+#'   \item{group_join}{Group-specific comparisons}
 #' }
+#'
+#' Each component may be NULL if that type of data is not present.
+#'
+#' @examples
+#' data(mtcars)
+#' # Compare mtcars against itself using 'vs' as grouping
+#' results <- compare_df(old_data = mtcars, new_data = mtcars, group_col = "vs")
+#'
+#' # Single dataset analysis
+#' results <- compare_df(old_data = mtcars, group_col = "vs")
+#'
+#' @importFrom dplyr %>% filter ungroup full_join
 #' @export
 compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
-  # Ensure group_col is provided
   if (missing(group_col) || is.null(group_col)) {
-    stop("The 'group_col' parameter is required and must be specified.")
+    stop("The 'group_col' parameter is required.")
   }
 
-  # Helper function to clean dummy rows
   clean_dummy_rows <- function(df) {
     dummy_fields <- c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")
     if (!is.atomic(df) && "field" %in% colnames(df)) {
@@ -37,7 +47,23 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     return(df)
   }
 
-  # Parse old dataset
+  merge_parsed_data <- function(old_df, new_df, by_col = "field", is_group = FALSE) {
+    if (is.null(old_df) || is.null(new_df)) {
+      return(NULL)
+    }
+
+    if (is_group && !is.null(group_col)) {
+      # For group data, ensure the column exists and handle appropriately
+      if (!(group_col %in% names(old_df)) || !(group_col %in% names(new_df))) {
+        warning(paste("Group column", group_col, "not found in data"))
+        return(NULL)
+      }
+      suppressWarnings(full_join(old_df, new_df, by = group_col))
+    } else {
+      suppressWarnings(full_join(old_df, new_df, by = by_col))
+    }
+  }
+
   old_parsed <- parse_function(
     parse_df = old_data,
     suffix_term = "old",
@@ -47,20 +73,17 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
   )
   old_parsed <- lapply(old_parsed, clean_dummy_rows)
 
-  # If no new dataset, include all expected components as NULL where applicable
   if (is.null(new_data)) {
-    complete_result <- list(
+    return(list(
       numeric_join = old_parsed$summary_numeric %||% NULL,
       factor_join = old_parsed$factor_df %||% NULL,
       char_join = old_parsed$char_df %||% NULL,
       bin_join = old_parsed$binary_df %||% NULL,
       date_join = old_parsed$date_df %||% NULL,
       group_join = old_parsed$group_df %||% NULL
-    )
-    return(complete_result)
+    ))
   }
 
-  # Parse new dataset
   new_parsed <- parse_function(
     parse_df = new_data,
     suffix_term = "new",
@@ -70,23 +93,15 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
   )
   new_parsed <- lapply(new_parsed, clean_dummy_rows)
 
-  # Generalized merging function
-  merge_parsed_data <- function(old_df, new_df, by_col = "field") {
-    if (is.null(old_df) || is.null(new_df)) return(NULL)
-    suppressWarnings(full_join(old_df, new_df, by = by_col))
-  }
-
-  # Merge each type of data, ensuring all components are included
   comparison_list <- list(
     numeric_join = merge_parsed_data(old_parsed$summary_numeric, new_parsed$summary_numeric),
     factor_join = merge_parsed_data(old_parsed$factor_df, new_parsed$factor_df),
     char_join = merge_parsed_data(old_parsed$char_df, new_parsed$char_df),
     bin_join = merge_parsed_data(old_parsed$binary_df, new_parsed$binary_df),
     date_join = merge_parsed_data(old_parsed$date_df, new_parsed$date_df),
-    group_join = merge_parsed_data(old_parsed$group_df, new_parsed$group_df, by_col = group_col)
+    group_join = merge_parsed_data(old_parsed$group_df, new_parsed$group_df, by_col = group_col, is_group = TRUE)
   )
 
-  # Ensure the output order is consistent and logical, even if some components are NULL
   ordered_comparison_list <- comparison_list[c(
     "numeric_join",
     "factor_join",
@@ -96,8 +111,5 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     "group_join"
   )]
 
-  # Guarantee all elements are present as NULL if not available
-  ordered_comparison_list <- lapply(ordered_comparison_list, function(x) if (is.null(x)) NULL else x)
-
-  return(ordered_comparison_list)
+  lapply(ordered_comparison_list, function(x) if (is.null(x)) NULL else x)
 }

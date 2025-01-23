@@ -14,30 +14,41 @@ compare_df(
 )
 }
 \arguments{
-\item{old_data}{Dataframe. The old dataset to compare.}
+\item{old_data}{Dataframe containing the base dataset for comparison}
 
-\item{new_data}{Dataframe. The new dataset to compare. If NULL, only the old dataset is analyzed.}
+\item{new_data}{Optional dataframe to compare against old_data. If NULL, only old_data is analyzed}
 
-\item{suffix_term}{Character. Suffix to append to parsed column names (default: "").}
+\item{suffix_term}{Character string to append to parsed column names (default: "")}
 
-\item{ind_outcomes}{Character vector. Individual outcomes to summarize (default: "").}
+\item{ind_outcomes}{Character vector of individual outcomes to summarize (default: "")}
 
-\item{group_col}{Character. Column name representing the grouping variable (required).}
+\item{group_col}{Required character string specifying the grouping variable column name}
 
-\item{add_years}{Logical. Whether to include year-based summaries (default: FALSE).}
+\item{add_years}{Logical indicating whether to include year-based summaries (default: FALSE)}
 }
 \value{
-A list of dataframes containing the comparison results:
+A list containing:
 \describe{
-\item{numeric_join}{Merged numeric fields.}
-\item{factor_join}{Merged factor fields.}
-\item{char_join}{Merged character fields.}
-\item{bin_join}{Merged binary fields.}
-\item{date_join}{Merged date fields.}
-\item{group_join}{Merged group-specific summaries.}
+\item{numeric_join}{Numeric field comparisons}
+\item{factor_join}{Factor level comparisons}
+\item{char_join}{Character field comparisons}
+\item{bin_join}{Binary field comparisons}
+\item{date_join}{Date field comparisons}
+\item{group_join}{Group-specific comparisons}
 }
+
+Each component may be NULL if that type of data is not present.
 }
 \description{
 Compares two datasets, summarizing numeric, factor, character, binary, date,
-and group-specific fields. Handles comparisons with or without a new dataset.
+and group-specific fields. Handles single dataset analysis or comparison between two datasets.
+}
+\examples{
+data(mtcars)
+# Compare mtcars against itself using 'vs' as grouping
+results <- compare_df(old_data = mtcars, new_data = mtcars, group_col = "vs")
+
+# Single dataset analysis
+results <- compare_df(old_data = mtcars, group_col = "vs")
+
 }
