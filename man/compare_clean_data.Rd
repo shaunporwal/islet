@@ -5,8 +5,8 @@
 \title{Compare and Analyze Clean Data}
 \usage{
 compare_clean_data(
-  df_old_path,
-  df_new_path,
+  old_data,
+  new_data,
   output_dir,
   final_vars_set,
   date_col,
@@ -16,9 +16,9 @@ compare_clean_data(
 )
 }
 \arguments{
-\item{df_old_path}{Character. Path to the old dataset file (e.g., a CSV file).}
+\item{old_data}{Dataframe. The old dataset for comparison.}
 
-\item{df_new_path}{Character. Path to the new dataset file (e.g., a CSV file).}
+\item{new_data}{Dataframe. The new dataset for comparison.}
 
 \item{output_dir}{Character. Path to the directory where the output files will be saved.}
 
@@ -36,9 +36,6 @@ The function uses this column to filter rows based on the date range.}
 \value{
 A list of dataframes containing the comparison results. Dataframes include numeric, factor, character, binary, date,
 and other derived datasets. Entries with missing data are omitted.
-
-The function also saves CSV files of the comparison results to the specified output directory.
-If \code{save_views} is TRUE, the views of the dataframes are saved as additional files in the output directory.
 }
 \description{
 This function compares two clean datasets, filters them based on a specified date range,

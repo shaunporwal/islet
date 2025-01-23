@@ -25,7 +25,6 @@ Imports:
     purrr,
     rlang,
     stats,
-    stringr,
     tidyr
 Depends: 
     R (>= 2.10)
