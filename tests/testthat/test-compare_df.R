@@ -67,3 +67,27 @@ test_that("compare_df output structure is correct", {
       names(result$date_join)))
   }
 })
+
+
+
+
+test_that("compare_df handles basic functionality", {
+  # Create simple test data
+  df1 <- mtcars
+  df2 <- mtcars
+  df2$mpg <- df2$mpg * 1.1 # Introduce some differences
+
+  group_col <- 'vs'
+
+
+  
+
+
+  # Test with two datasets
+  compare_result <- compare_df(old_data = df1, new_data = df2, group_col = "vs")
+  expect_type(compare_result, "list")
+  expect_named(compare_result, c(
+    "numeric_join", "factor_join", "char_join",
+    "bin_join", "date_join", "group_join"
+  ))
+})

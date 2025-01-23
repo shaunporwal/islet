@@ -32,20 +32,15 @@
 #'
 #' @importFrom dplyr %>% filter ungroup full_join
 #' @export
-compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
+compare_df <- function(df1, df2 = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
   if (missing(group_col) || is.null(group_col)) {
     stop("The 'group_col' parameter is required.")
   }
-
-  clean_dummy_rows <- function(df) {
-    dummy_fields <- c("dummy_date", "dummy_posi", "dummy_char", "dummy_num", "dummy_factor")
-    if (!is.atomic(df) && "field" %in% colnames(df)) {
-      df <- df %>%
-        filter(!.data$field %in% dummy_fields) %>%
-        ungroup()
-    }
-    return(df)
+  if (is.null(df1)){
+    stop("df1 requires a dataframe value")
   }
+
+
 
   merge_parsed_data <- function(old_df, new_df, by_col = "field", is_group = FALSE) {
     if (is.null(old_df) || is.null(new_df)) {
@@ -71,7 +66,6 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     group_col = group_col,
     add_years = add_years
   )
-  old_parsed <- lapply(old_parsed, clean_dummy_rows)
 
   if (is.null(new_data)) {
     return(list(
