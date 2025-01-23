@@ -2,3 +2,7 @@ url: http://www.shaunporwal.com/islet/
 template:
   bootstrap: 5
 
+navbar:
+  left:
+    - text: "← Main Site"
+      href: https://shaunporwal.com
