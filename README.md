@@ -4,9 +4,14 @@
 # islet
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/shaunporwal/islet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shaunporwal/islet/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-Personal R functions.
+Islet contains personal R functions. I’m also using this to learn how to
+create R packages.
 
 ## Installation
 
@@ -51,6 +56,3 @@ up-to-date. `devtools::build_readme()` is handy for this. You could also
 use GitHub Actions to re-render `README.Rmd` every time you push. An
 example workflow can be found here:
 <https://github.com/r-lib/actions/tree/v1/examples>.
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
