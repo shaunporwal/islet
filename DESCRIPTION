@@ -1,7 +1,7 @@
 Package: islet
 Title: Provides Data Pipelining Functions
 Version: 0.2.0
-Authors@R: 
+Authors@R:
     c(person(given = "Shaun P.",
              family = "Porwal",
              role = c("aut", "cre"),
@@ -11,22 +11,25 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    tibble
+    tibble,
+    withr
 Config/testthat/edition: 3
-Imports: 
+Imports:
     dplyr,
     gt,
     janitor,
     lubridate,
     purrr,
+    readxl,
     rlang,
     stats,
-    tidyr
-Depends: 
+    tidyr,
+    glue
+Depends:
     R (>= 2.10)
 LazyData: true
 VignetteBuilder: knitr

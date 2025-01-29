@@ -43,12 +43,3 @@ Each component may be NULL if that type of data is not present.
 Compares two datasets, summarizing numeric, factor, character, binary, date,
 and group-specific fields. Handles single dataset analysis or comparison between two datasets.
 }
-\examples{
-data(mtcars)
-# Compare mtcars against itself using 'vs' as grouping
-results <- compare_df(old_data = mtcars, new_data = mtcars, group_col = "vs")
-
-# Single dataset analysis
-results <- compare_df(old_data = mtcars, group_col = "vs")
-
-}

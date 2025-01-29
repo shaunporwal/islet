@@ -21,26 +21,15 @@
 #' }
 #'
 #' Each component may be NULL if that type of data is not present.
-#'
-#' @examples
-#' data(mtcars)
-#' # Compare mtcars against itself using 'vs' as grouping
-#' results <- compare_df(old_data = mtcars, new_data = mtcars, group_col = "vs")
-#'
-#' # Single dataset analysis
-#' results <- compare_df(old_data = mtcars, group_col = "vs")
-#'
 #' @importFrom dplyr %>% filter ungroup full_join
 #' @export
-compare_df <- function(df1, df2 = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
+compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes = c(""), group_col, add_years = FALSE) {
   if (missing(group_col) || is.null(group_col)) {
     stop("The 'group_col' parameter is required.")
   }
-  if (is.null(df1)){
-    stop("df1 requires a dataframe value")
+  if (is.null(old_data)) {
+    stop("old_data requires a dataframe value")
   }
-
-
 
   merge_parsed_data <- function(old_df, new_df, by_col = "field", is_group = FALSE) {
     if (is.null(old_df) || is.null(new_df)) {
@@ -85,7 +74,6 @@ compare_df <- function(df1, df2 = NULL, suffix_term = "", ind_outcomes = c(""), 
     group_col = group_col,
     add_years = add_years
   )
-  new_parsed <- lapply(new_parsed, clean_dummy_rows)
 
   comparison_list <- list(
     numeric_join = merge_parsed_data(old_parsed$summary_numeric, new_parsed$summary_numeric),
