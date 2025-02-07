@@ -8,7 +8,7 @@ test_that("llm_structure adds a structured column to the dataframe", {
     print("openai_secret_key found")
   }
 
-  df_unstruct_col <- islet::read_raw_data(file = "https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/df_trial3_unstructured_col.csv")
+  df_unstruct_col <- islet::read_raw_data(file = "https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial3_unstructured_col.csv")
 
   result_df <- islet::llm_structure(df_unstruct_col, "DOCTOR_NOTES", "Structure these notes: ")
 

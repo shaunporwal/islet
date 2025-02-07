@@ -3,7 +3,7 @@ library(dplyr)
 
 test_that("parse_function handles all column types correctly", {
   # Load test data
-  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/df_trial.csv")
+  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial.csv")
 
   # Convert date columns to proper Date type and character columns to factors where needed
   trial <- trial %>%
@@ -46,7 +46,7 @@ test_that("parse_function handles all column types correctly", {
 })
 
 test_that("parse_function handles grouping correctly", {
-  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/df_trial.csv")
+  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial.csv")
 
   # Test with single outcome
   results_single <- parse_function(trial, group_col = "TRT", ind_outcomes = "AGE")
@@ -63,7 +63,7 @@ test_that("parse_function handles grouping correctly", {
 })
 
 test_that("parse_function handles missing data correctly", {
-  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/df_trial.csv")
+  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial.csv")
 
   # Create some missing values
   trial_with_na <- trial %>%
@@ -91,7 +91,7 @@ test_that("parse_function handles empty/invalid inputs correctly", {
   expect_type(results_empty, "list")
 
   # Test with invalid group column
-  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/data/df_trial.csv")
+  trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial.csv")
   expect_error(
     parse_function(trial, group_col = "nonexistent_column", ind_outcomes = "AGE"),
     "The specified grouping column is missing in the dataset"
