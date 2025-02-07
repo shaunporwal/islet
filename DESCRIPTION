@@ -3,9 +3,9 @@ Title: Provides Data Pipelining Functions
 Version: 0.2.1
 Authors@R:
     c(person(given = "Shaun P.",
-             family = "Porwal",
-             role = c("aut", "cre"),
-             email = "shaun.Porwal@gmail.com"))
+            family = "Porwal",
+            role = c("aut", "cre"),
+            email = "shaun.Porwal@gmail.com"))
 Description: This package houses data pipelining functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
