@@ -29,7 +29,8 @@ Imports:
     stats,
     tidyr,
     glue,
-    readr
+    readr,
+    openai
 Depends:
     R (>= 2.10)
 LazyData: true

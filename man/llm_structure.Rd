@@ -4,14 +4,14 @@
 \alias{llm_structure}
 \title{Structure Data using LLM}
 \usage{
-llm_structure(df, col_name, prompt)
+llm_structure(df, col_name, prompt, model = "gpt-3.5-turbo")
 }
 \arguments{
 \item{df}{A dataframe.}
 
 \item{col_name}{Name of the column in df to be processed.}
 
-\item{prompt}{Prompt to be combined with each cell's value.}
+\item{prompt}{Prompt to be used as the system message.}
 }
 \value{
 Dataframe with a new column suffixed with "_llm".
