@@ -75,7 +75,7 @@ generate_doctor_notes <- function() {
     }
     # Append additional unstructured details with probability
     if (runif(1) < 0.5) {
-      extra_notes <- sample(additional_details, sample(1:2, 1))
+      extra_notes <- paste(sample(additional_details, sample(1:2, 1)), collapse = " ")
       note <- paste(note, extra_notes, sep = " ")
     }
   }
@@ -110,20 +110,20 @@ generate_doctor_notes <- function() {
 trial <-
   tibble::tibble(
     trt = sample(c("Drug A", "Drug B"), n, replace = TRUE),
-    age = rnorm(n, mean = 52.5, sd = 15.75) |> as.integer(),
-    marker = rgamma(n, 1.05, 0.95) |> round(digits = 3),
-    stage = sample(
+    age = as.integer(rnorm(n, mean = 52.5, sd = 15.75)),
+    marker = round(rgamma(n, 1.05, 0.95), digits = 3),
+    stage = factor(sample(
       c("T1", "T2", "T3", "T4"),
       size = n,
       prob = c(0.26, 0.24, 0.25, 0.25),
       replace = TRUE
-    ) |> factor(),
-    grade = sample(
+    )),
+    grade = factor(sample(
       c("I", "II", "III"),
       size = n,
       prob = c(0.34, 0.33, 0.33),
       replace = TRUE
-    ) |> factor(),
+    )),
     response_prob = 1 / (1 + exp(-((trt == "Drug") - 0.21 * as.numeric(stage) - 0.105 * as.numeric(grade) + 0.105 * marker))),
     response = runif(n) < response_prob,
     ttdeath_true = exp(
@@ -133,7 +133,7 @@ trial <-
         rnorm(n, sd = 0.525)
     ) * 12,
     death = ifelse(ttdeath_true <= 24, 1L, 0L),
-    ttdeath = pmin(ttdeath_true, 24) |> round(digits = 2),
+    ttdeath = round(pmin(ttdeath_true, 24), digits = 2),
     visit_date = sample(
       seq.Date(as.Date("2020-01-15"), as.Date("2022-01-15"), by = "days"),
       n,
@@ -155,18 +155,18 @@ trial <-
       prob = c(0.34, 0.33, 0.33),
       replace = TRUE
     ),
-    insurance = sample(
+    insurance = factor(sample(
       c("Private", "Medicaid", "Medicare"),
       n,
       prob = c(0.34, 0.33, 0.33),
       replace = TRUE
-    ) |> factor(),
-    smoking_status = sample(
+    )),
+    smoking_status = factor(sample(
       c("Non-smoker", "Former smoker", "Current smoker"),
       n,
       prob = c(0.34, 0.33, 0.33),
       replace = TRUE
-    ) |> factor(),
+    )),
     doctor_notes = replicate(n, generate_doctor_notes())
   ) |>
   dplyr::mutate(
