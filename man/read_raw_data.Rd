@@ -24,10 +24,3 @@ This function reads a CSV file and performs several cleaning steps:
 \item Optionally converts character columns to uppercase if not parsed as dates.
 }
 }
-\examples{
-\dontrun{
-  # Assuming 'data.csv' contains appropriate data
-  cleaned_data <- read_raw_data("data.csv")
-  raw_data <- read_raw_data("data.csv", col_caps = FALSE, str_caps = FALSE)
-}
-}

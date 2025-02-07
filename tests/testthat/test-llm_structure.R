@@ -1,5 +1,4 @@
 library(testthat)
-library(openai)
 
 test_that("llm_structure adds a structured column to the dataframe", {
   if (Sys.getenv("openai_secret_key") == "") {
@@ -7,6 +6,9 @@ test_that("llm_structure adds a structured column to the dataframe", {
   } else {
     print("openai_secret_key found")
   }
+
+  df_test <-
+    readr::read_csv(file = "https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial3_unstructured_col.csv")
 
   df_unstruct_col <- islet::read_raw_data(file = "https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial3_unstructured_col.csv")
 

@@ -11,25 +11,16 @@
 #'
 #' @return A data frame with cleaned column names and data.
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#'   # Assuming 'data.csv' contains appropriate data
-#'   cleaned_data <- read_raw_data("data.csv")
-#'   raw_data <- read_raw_data("data.csv", col_caps = FALSE, str_caps = FALSE)
-#' }
 read_raw_data <- function(file, col_caps = TRUE, str_caps = TRUE) {
-  df_raw_data <- utils::read.csv(file = file, stringsAsFactors = FALSE)
-  
-  # Optionally clean column names to uppercase
+  df_raw_data <- readr::read_csv(file)
+
   if (col_caps) {
     df_raw_data <- janitor::clean_names(df_raw_data, case = "all_caps")
   }
-  
-  # Process character columns
+
   df_raw_data <- df_raw_data %>%
-    mutate(across(where(is.character), function(col) {
-      if (all(grepl("^\\d{4}-\\d{2}-\\d{2}$", col))) { # Check for YYYY-MM-DD format
+    dplyr::mutate(dplyr::across(where(is.character), function(col) {
+      if (all(grepl("^\\d{4}-\\d{2}-\\d{2}$", col))) {
         lubridate::ymd(col)
       } else if (str_caps) {
         toupper(col)
@@ -38,5 +29,5 @@ read_raw_data <- function(file, col_caps = TRUE, str_caps = TRUE) {
       }
     }))
 
-  return(df_raw_data)
+  df_raw_data
 }
