@@ -16,8 +16,7 @@ test_that("llm_structure adds a structured column to the dataframe", {
   result_df <- islet::llm_structure(
     df = df_unstruct_col,
     col_name = "DOCTOR_NOTES",
-    prompt = "output 1 if there are heart issues, 0 if not. just 1s or 0s",
-    model = "gpt-4o-mini"
+    prompt = "output 1 if there are heart issues, 0 if not. just 1s or 0s. make sure to have an output, you can not output nothing"
   )
 
   expect_true("DOCTOR_NOTES_llm" %in% names(result_df))

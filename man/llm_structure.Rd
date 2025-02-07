@@ -2,20 +2,22 @@
 % Please edit documentation in R/llm_structure.R
 \name{llm_structure}
 \alias{llm_structure}
-\title{Structure Data using LLM}
+\title{Add Structured Column to a Dataframe Using a Language Model}
 \usage{
-llm_structure(df, col_name, prompt, model = "gpt-3.5-turbo")
+llm_structure(df, col_name, prompt, model = "gpt-4o-mini")
 }
 \arguments{
-\item{df}{A dataframe.}
+\item{df}{A data frame containing the input data.}
 
-\item{col_name}{Name of the column in df to be processed.}
+\item{col_name}{A character string specifying the column name to process.}
 
-\item{prompt}{Prompt to be used as the system message.}
+\item{prompt}{A character string containing the prompt for the language model.}
+
+\item{model}{A character string specifying the language model to use (e.g., "gpt-4o-mini").}
 }
 \value{
-Dataframe with a new column suffixed with "_llm".
+A data frame with an additional column named \code{<col_name>_llm} containing the language model's output.
 }
 \description{
-Applies an LLM to structure data from a specified column.
+Processes a column in a data frame using a language model.
 }
