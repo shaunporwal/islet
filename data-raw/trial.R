@@ -62,4 +62,4 @@ attr(trial$hospital, "label") <- "Hospital"
 attr(trial$insurance, "label") <- "Insurance Type"
 attr(trial$smoking_status, "label") <- "Smoking Status"
 
-trial |> readr::write_csv(file = here::here("data/df_trial.csv"))
+trial |> readr::write_csv(file = here::here("inst/extdata/df_trial.csv"))

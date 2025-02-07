@@ -1,0 +1,201 @@
+trt,age,marker,stage,grade,response,death,ttdeath,visit_date,follow_up_date,has_side_effects,enrolled_in_study,bmi,systolic_bp,patient_id,hospital,insurance,smoking_status
+Drug A,23,0.16,T1,II,0,0,24,2021-06-04,2023-04-13,TRUE,TRUE,24.3,119,ID-001,Hospital C,Private,Former smoker
+Drug B,9,1.107,T2,I,1,0,24,2021-03-06,2023-07-21,FALSE,TRUE,23.9,104,ID-002,Hospital C,Medicaid,Current smoker
+Drug A,31,0.277,T1,II,0,0,24,2020-01-28,2023-03-01,FALSE,FALSE,28.3,110,ID-003,Hospital A,Medicaid,Non-smoker
+Drug A,46,2.067,T3,III,1,1,17.64,2020-07-07,2022-05-01,FALSE,TRUE,31,104,ID-004,Hospital B,Medicaid,Former smoker
+Drug A,51,2.767,T4,III,1,1,16.43,2021-07-24,2022-12-30,FALSE,FALSE,22.5,91,ID-005,Hospital B,Medicare,Non-smoker
+Drug B,39,0.613,T4,I,0,1,15.64,2020-08-27,2022-12-29,FALSE,FALSE,28.9,122,ID-006,Hospital C,Private,Current smoker
+Drug A,37,0.354,T1,II,0,0,24,2021-04-12,2023-09-16,FALSE,FALSE,26,116,ID-007,Hospital B,Medicaid,Current smoker
+Drug A,32,1.739,T1,I,0,1,18.43,2020-03-30,2023-09-15,TRUE,TRUE,26.4,109,ID-008,Hospital A,Medicare,Non-smoker
+Drug A,31,0.144,T1,II,0,0,24,2020-03-09,2022-12-10,TRUE,TRUE,29.7,143,ID-009,Hospital C,Medicaid,Non-smoker
+Drug B,34,0.205,T3,I,0,1,10.53,2021-08-16,2023-07-27,FALSE,FALSE,23.4,148,ID-010,Hospital A,Private,Former smoker
+Drug B,42,0.513,T1,III,0,0,24,2020-08-28,2022-09-01,FALSE,FALSE,22.9,118,ID-011,Hospital A,Private,Current smoker
+Drug B,63,0.06,T3,I,1,0,24,2021-06-22,2023-11-02,TRUE,TRUE,27.1,129,ID-012,Hospital C,Medicare,Current smoker
+Drug B,54,0.831,T4,III,0,1,14.34,2021-03-21,2023-03-29,TRUE,TRUE,18.2,140,ID-013,Hospital A,Medicaid,Non-smoker
+Drug B,21,0.258,T4,I,0,1,12.89,2021-01-13,2023-01-04,TRUE,TRUE,30,102,ID-014,Hospital A,Medicaid,Former smoker
+Drug B,48,0.128,T1,I,0,1,22.68,2020-12-08,2022-11-14,FALSE,TRUE,25.4,132,ID-015,Hospital B,Private,Non-smoker
+Drug B,71,0.445,T4,III,0,1,8.71,2021-04-01,2023-04-27,TRUE,FALSE,25.6,111,ID-016,Hospital B,Medicaid,Former smoker
+Drug A,38,2.083,T4,III,1,0,24,2020-11-03,2023-07-07,TRUE,FALSE,23.7,119,ID-017,Hospital A,Private,Former smoker
+Drug B,49,0.157,T2,II,0,1,15.21,2020-06-21,2022-06-23,TRUE,TRUE,22.7,150,ID-018,Hospital C,Medicaid,Non-smoker
+Drug A,57,NA,T1,III,0,0,24,2021-02-05,2023-02-05,TRUE,FALSE,32.5,111,ID-019,Hospital B,Private,Non-smoker
+Drug A,46,0.325,T1,II,0,0,24,2020-12-22,2022-04-02,FALSE,TRUE,25.8,94,ID-020,Hospital A,Medicaid,Non-smoker
+Drug A,47,0.266,T2,I,0,0,24,2020-05-27,2023-05-14,FALSE,FALSE,21.7,146,ID-021,Hospital C,Medicare,Current smoker
+Drug A,52,0.719,T2,II,0,0,24,2020-06-30,2022-04-01,FALSE,FALSE,27.3,122,ID-022,Hospital C,Medicare,Non-smoker
+Drug A,61,1.713,T4,I,0,1,16.92,2021-07-02,2023-05-15,FALSE,TRUE,18.5,140,ID-023,Hospital C,Medicaid,Current smoker
+Drug A,38,0.096,T4,I,0,1,23.89,2020-03-03,2023-06-25,FALSE,FALSE,22.7,143,ID-024,Hospital A,Medicaid,Non-smoker
+Drug B,34,0.105,T4,II,0,1,6.32,2020-08-08,2023-03-31,TRUE,TRUE,30.8,123,ID-025,Hospital A,Medicaid,Former smoker
+Drug B,49,0.043,T2,III,0,1,15.77,2020-07-26,2023-06-20,TRUE,TRUE,18.1,107,ID-026,Hospital B,Medicaid,Former smoker
+Drug A,63,0.981,T4,II,1,0,24,2020-11-09,2022-03-02,FALSE,TRUE,21.3,119,ID-027,Hospital A,Medicaid,Current smoker
+Drug B,67,1.156,T1,II,0,0,24,2021-09-09,2023-04-18,FALSE,FALSE,24.1,78,ID-028,Hospital A,Medicaid,Former smoker
+Drug B,68,0.105,T4,II,0,1,15.45,2020-06-21,2022-04-06,TRUE,TRUE,27.4,106,ID-029,Hospital A,Medicaid,Former smoker
+Drug A,78,0.175,T3,I,1,1,17.43,2020-03-21,2023-04-18,FALSE,TRUE,27.3,134,ID-030,Hospital B,Private,Non-smoker
+Drug B,36,0.309,T1,III,1,0,24,2020-02-16,2022-05-18,FALSE,FALSE,24.9,106,ID-031,Hospital B,Medicaid,Non-smoker
+Drug A,NA,1.869,T2,II,NA,1,20.9,2020-11-04,2023-01-01,FALSE,FALSE,24.3,92,ID-032,Hospital C,Medicaid,Current smoker
+Drug B,53,2.008,T3,I,0,0,24,2021-09-18,2022-04-21,FALSE,TRUE,26.5,128,ID-033,Hospital B,Medicaid,Former smoker
+Drug A,36,1.894,T3,I,1,0,24,2020-09-04,2022-08-02,FALSE,TRUE,12.8,112,ID-034,Hospital A,Medicaid,Former smoker
+Drug A,51,0.16,T3,I,0,0,24,2021-03-14,2022-07-17,TRUE,TRUE,27,134,ID-035,Hospital B,Medicare,Former smoker
+Drug A,NA,1.209,T3,III,0,1,21.19,2020-08-31,2022-05-23,TRUE,FALSE,19.7,114,ID-036,Hospital B,Medicaid,Former smoker
+Drug B,57,0.108,T1,II,0,1,12.52,2021-05-16,2022-11-03,TRUE,FALSE,23.6,127,ID-037,Hospital A,Private,Current smoker
+Drug A,31,0.611,T1,II,1,0,24,2020-06-13,2022-07-31,TRUE,FALSE,25.2,105,ID-038,Hospital B,Medicaid,Current smoker
+Drug B,37,0.222,T4,III,0,1,15.59,2020-03-31,2023-09-18,TRUE,TRUE,24.6,136,ID-039,Hospital C,Medicare,Former smoker
+Drug B,28,0.803,T4,II,0,1,18,2020-11-23,2022-04-26,TRUE,FALSE,20.7,116,ID-040,Hospital C,Medicare,Current smoker
+Drug B,40,0.37,T3,II,0,1,18.02,2020-12-22,2023-04-15,TRUE,TRUE,21,111,ID-041,Hospital A,Medicaid,Current smoker
+Drug B,49,0.743,T1,III,1,1,12.43,2021-10-11,2023-10-17,TRUE,TRUE,19.6,122,ID-042,Hospital B,Private,Non-smoker
+Drug A,61,0.177,T4,III,0,1,12.1,2021-09-01,2023-04-20,TRUE,TRUE,32.2,109,ID-043,Hospital A,Medicaid,Non-smoker
+Drug B,NA,1.479,T3,I,NA,0,24,2020-10-04,2022-03-08,FALSE,TRUE,28.9,103,ID-044,Hospital C,Private,Non-smoker
+Drug A,54,0.161,T4,III,1,1,17.42,2021-10-06,2023-07-23,TRUE,FALSE,28.6,111,ID-045,Hospital B,Private,Former smoker
+Drug B,71,0.737,T1,I,1,0,24,2021-12-13,2023-12-27,FALSE,FALSE,25.8,124,ID-046,Hospital A,Private,Non-smoker
+Drug A,38,0.124,T1,III,1,0,24,2020-11-22,2022-08-13,FALSE,FALSE,24.2,118,ID-047,Hospital C,Private,Non-smoker
+Drug B,31,0.092,T2,II,0,0,24,2021-02-11,2022-08-03,FALSE,TRUE,26.8,128,ID-048,Hospital A,Medicare,Non-smoker
+Drug B,48,0.385,T1,II,0,1,12.19,2021-01-12,2023-06-17,TRUE,TRUE,27.5,108,ID-049,Hospital C,Private,Former smoker
+Drug B,23,0.21,T4,II,0,1,10.02,2020-01-29,2023-07-08,FALSE,FALSE,19.9,125,ID-050,Hospital C,Private,Former smoker
+Drug B,83,0.475,T1,III,0,1,18.23,2020-11-29,2022-04-24,TRUE,FALSE,21.7,137,ID-051,Hospital B,Medicare,Non-smoker
+Drug B,52,1.628,T2,III,0,1,10.42,2021-09-16,2022-03-15,TRUE,TRUE,25.1,136,ID-052,Hospital B,Medicare,Former smoker
+Drug B,32,0.583,T2,III,0,0,24,2021-12-16,2022-10-08,FALSE,FALSE,26.1,114,ID-053,Hospital B,Private,Non-smoker
+Drug B,53,1.922,T3,II,0,0,24,2020-02-03,2022-01-18,FALSE,TRUE,19.1,158,ID-054,Hospital B,Private,Former smoker
+Drug B,69,0.702,T3,III,0,1,19.34,2020-07-23,2023-11-06,TRUE,FALSE,26.7,123,ID-055,Hospital A,Medicare,Non-smoker
+Drug B,60,1.206,T2,I,0,1,12.21,2020-12-21,2022-08-19,TRUE,FALSE,22.3,120,ID-056,Hospital B,Medicare,Non-smoker
+Drug B,45,2.213,T4,III,1,1,14.46,2020-07-20,2022-09-05,TRUE,FALSE,26.8,106,ID-057,Hospital C,Medicare,Non-smoker
+Drug A,39,1.406,T1,I,0,1,19.34,2021-02-10,2022-11-10,TRUE,FALSE,27.6,129,ID-058,Hospital C,Medicaid,Current smoker
+Drug B,42,0.101,T4,II,1,1,10.16,2021-12-11,2022-09-09,TRUE,FALSE,25.9,114,ID-059,Hospital B,Private,Current smoker
+Drug B,38,0.013,T2,II,1,1,13.15,2020-09-11,2022-09-28,TRUE,TRUE,25,149,ID-060,Hospital B,Private,Non-smoker
+Drug A,36,2.032,T4,III,0,1,10.12,2021-09-21,2022-01-13,FALSE,FALSE,25.4,144,ID-061,Hospital B,Medicaid,Current smoker
+Drug A,71,1.046,T1,I,0,0,24,2021-08-23,2022-07-21,FALSE,TRUE,24.6,106,ID-062,Hospital A,Private,Non-smoker
+Drug A,31,0.408,T4,II,0,1,22.77,2020-09-13,2022-08-07,TRUE,TRUE,30.9,122,ID-063,Hospital C,Medicaid,Current smoker
+Drug B,43,2.636,T1,I,0,0,24,2021-08-16,2022-02-07,FALSE,FALSE,19.4,151,ID-064,Hospital B,Medicare,Former smoker
+Drug B,57,1.263,T4,II,1,0,24,2021-11-16,2023-10-27,FALSE,FALSE,18.3,119,ID-065,Hospital B,Medicaid,Current smoker
+Drug B,53,2.044,T1,I,0,1,22.13,2020-05-16,2022-05-06,TRUE,FALSE,23.5,134,ID-066,Hospital B,Private,Former smoker
+Drug B,25,2.447,T1,I,1,0,24,2020-10-13,2023-05-12,FALSE,FALSE,24.6,121,ID-067,Hospital C,Private,Former smoker
+Drug B,44,1.041,T1,I,1,1,20.62,2021-07-14,2022-06-30,FALSE,TRUE,16.7,111,ID-068,Hospital A,Medicaid,Current smoker
+Drug B,25,0.531,T4,III,0,1,23.23,2021-05-05,2023-04-15,FALSE,TRUE,22.6,106,ID-069,Hospital A,Private,Former smoker
+Drug A,30,0.924,T1,II,0,1,7.38,2020-03-16,2022-10-27,TRUE,TRUE,16.9,87,ID-070,Hospital A,Medicare,Current smoker
+Drug A,51,1.087,T2,I,1,0,24,2021-06-13,2022-09-13,TRUE,TRUE,23.6,145,ID-071,Hospital A,Medicaid,Current smoker
+Drug A,40,0.733,T2,III,0,0,24,2021-07-25,2023-11-21,FALSE,TRUE,28.7,111,ID-072,Hospital A,Medicaid,Former smoker
+Drug A,66,2.157,T2,III,NA,0,24,2021-11-10,2023-04-25,FALSE,FALSE,24.2,155,ID-073,Hospital A,Private,Non-smoker
+Drug B,43,NA,T1,III,0,0,24,2021-01-17,2023-09-15,FALSE,FALSE,25.1,117,ID-074,Hospital B,Medicare,Non-smoker
+Drug A,21,1.527,T4,II,1,0,24,2021-11-21,2023-09-21,FALSE,FALSE,36,125,ID-075,Hospital B,Medicaid,Current smoker
+Drug A,54,2.238,T4,III,0,1,19.22,2020-02-17,2022-12-12,TRUE,TRUE,27.2,145,ID-076,Hospital C,Medicare,Former smoker
+Drug A,67,0.153,T2,III,0,1,7.27,2020-07-10,2022-03-25,TRUE,TRUE,22.7,104,ID-077,Hospital B,Medicare,Former smoker
+Drug B,43,0.305,T2,I,0,1,23.88,2020-04-08,2023-12-21,TRUE,FALSE,18.9,142,ID-078,Hospital A,Private,Former smoker
+Drug B,54,0.131,T4,II,0,1,16.23,2020-06-03,2023-11-04,FALSE,FALSE,28.9,132,ID-079,Hospital B,Medicare,Current smoker
+Drug A,41,0.386,T4,I,0,0,24,2020-01-05,2023-07-04,TRUE,FALSE,27.1,107,ID-080,Hospital C,Medicaid,Former smoker
+Drug A,34,1.645,T3,I,0,1,14.06,2020-09-13,2023-05-21,FALSE,TRUE,26.4,104,ID-081,Hospital A,Medicaid,Former smoker
+Drug A,34,1.321,T2,I,1,0,24,2021-05-24,2023-12-21,TRUE,TRUE,25.3,109,ID-082,Hospital B,Medicaid,Current smoker
+Drug A,6,0.229,T4,I,0,0,24,2021-06-07,2023-05-02,TRUE,FALSE,21.4,91,ID-083,Hospital C,Private,Current smoker
+Drug B,39,0.615,T3,III,0,0,24,2020-05-19,2023-08-27,TRUE,FALSE,25.5,110,ID-084,Hospital B,Medicaid,Former smoker
+Drug A,36,1.976,T2,I,0,1,16.44,2021-11-20,2022-02-01,FALSE,TRUE,20.8,111,ID-085,Hospital B,Private,Former smoker
+Drug A,58,1.941,T4,III,1,1,23.81,2021-03-03,2022-05-14,TRUE,FALSE,35.4,119,ID-086,Hospital A,Medicaid,Former smoker
+Drug A,27,0.22,T1,I,NA,0,24,2020-06-06,2022-10-21,FALSE,FALSE,22.3,124,ID-087,Hospital A,Medicare,Non-smoker
+Drug A,47,3.874,T2,I,1,1,18.37,2020-03-23,2023-02-18,FALSE,FALSE,21.1,116,ID-088,Hospital C,Private,Current smoker
+Drug A,40,0.982,T1,I,0,1,11.44,2021-02-10,2023-11-22,FALSE,TRUE,18.7,114,ID-089,Hospital A,Private,Former smoker
+Drug B,50,1.68,T4,III,0,1,20.94,2020-10-23,2023-10-19,FALSE,FALSE,24.5,102,ID-090,Hospital C,Medicaid,Former smoker
+Drug B,61,1.091,T3,III,0,1,5.33,2020-01-02,2022-02-08,TRUE,TRUE,32.6,125,ID-091,Hospital B,Private,Former smoker
+Drug B,47,0.169,T3,III,0,1,22.92,2021-05-08,2023-05-24,FALSE,FALSE,26.7,129,ID-092,Hospital A,Medicare,Non-smoker
+Drug A,52,0.511,T1,III,1,1,10.33,2020-03-03,2022-04-30,FALSE,TRUE,22.6,140,ID-093,Hospital A,Medicaid,Former smoker
+Drug B,51,2.141,T3,III,1,0,24,2020-05-10,2022-01-22,FALSE,FALSE,20.3,115,ID-094,Hospital B,Medicaid,Former smoker
+Drug B,68,0.599,T2,III,1,0,24,2020-05-04,2023-01-18,FALSE,FALSE,23.2,89,ID-095,Hospital A,Medicare,Non-smoker
+Drug B,33,0.34,T3,III,0,1,14.54,2020-12-26,2023-08-28,FALSE,TRUE,25.8,128,ID-096,Hospital C,Medicare,Former smoker
+Drug B,NA,0.389,T2,III,NA,1,19.14,2020-11-10,2023-01-09,FALSE,TRUE,24.5,137,ID-097,Hospital B,Medicaid,Current smoker
+Drug B,34,0.005,T2,II,0,0,24,2020-12-16,2023-10-31,FALSE,TRUE,34.6,126,ID-098,Hospital C,Medicare,Current smoker
+Drug A,38,0.075,T3,III,0,1,21.19,2021-10-06,2023-07-09,FALSE,FALSE,26.5,111,ID-099,Hospital B,Medicare,Non-smoker
+Drug A,NA,1.491,T4,I,NA,1,16.07,2021-03-29,2023-08-17,TRUE,FALSE,24.2,145,ID-100,Hospital A,Private,Former smoker
+Drug B,10,0.358,T4,III,0,1,9.97,2021-10-27,2022-08-23,TRUE,FALSE,25.8,133,ID-101,Hospital C,Medicaid,Current smoker
+Drug B,49,1.709,T3,I,0,0,24,2020-04-25,2023-07-26,FALSE,FALSE,26.6,129,ID-102,Hospital C,Medicaid,Current smoker
+Drug B,56,0.056,T3,II,0,0,24,2020-02-18,2023-08-13,TRUE,FALSE,24.5,77,ID-103,Hospital B,Private,Non-smoker
+Drug A,50,1.354,T2,II,NA,0,24,2021-02-19,2022-05-11,TRUE,FALSE,24.1,115,ID-104,Hospital A,Private,Former smoker
+Drug A,60,2.522,T3,I,0,1,19.75,2020-08-12,2023-10-31,TRUE,TRUE,21.1,125,ID-105,Hospital B,Medicaid,Non-smoker
+Drug B,49,0.387,T2,II,1,1,16.67,2020-05-22,2023-12-13,TRUE,FALSE,32.3,137,ID-106,Hospital A,Private,Current smoker
+Drug B,54,0.592,T2,II,0,1,11.18,2020-09-13,2022-05-14,TRUE,TRUE,16.1,110,ID-107,Hospital C,Medicare,Former smoker
+Drug A,39,0.243,T3,III,0,1,18.29,2021-02-17,2022-07-25,TRUE,FALSE,19.1,132,ID-108,Hospital A,Private,Current smoker
+Drug A,48,0.215,T2,I,0,0,24,2021-03-03,2023-05-20,TRUE,TRUE,25.9,128,ID-109,Hospital C,Medicare,Non-smoker
+Drug A,65,1.207,T1,III,0,1,17.56,2021-02-05,2023-08-07,TRUE,FALSE,23,116,ID-110,Hospital B,Medicare,Former smoker
+Drug B,47,0.29,T1,III,1,1,17.45,2020-12-04,2022-10-24,TRUE,TRUE,26.1,121,ID-111,Hospital B,Medicare,Former smoker
+Drug A,61,0.718,T3,I,1,0,24,2020-10-20,2022-03-03,FALSE,TRUE,28.6,108,ID-112,Hospital B,Medicaid,Former smoker
+Drug A,34,0.589,T4,I,0,1,22.86,2020-06-06,2022-04-05,TRUE,TRUE,30.6,132,ID-113,Hospital C,Private,Former smoker
+Drug A,60,0.003,T1,I,0,1,13.68,2021-01-31,2022-01-13,TRUE,FALSE,26.5,134,ID-114,Hospital A,Medicaid,Current smoker
+Drug B,45,1.328,T4,II,1,0,24,2020-08-06,2023-05-09,FALSE,TRUE,20.6,130,ID-115,Hospital C,Medicare,Former smoker
+Drug A,58,0.308,T3,III,1,0,24,2021-06-24,2022-07-27,FALSE,TRUE,28,104,ID-116,Hospital B,Medicaid,Current smoker
+Drug B,26,0.691,T3,III,0,1,17.46,2020-10-15,2022-08-11,TRUE,TRUE,23.1,144,ID-117,Hospital B,Medicare,Current smoker
+Drug B,44,3.249,T2,II,0,0,24,2020-10-23,2022-09-15,TRUE,FALSE,21.5,109,ID-118,Hospital A,Medicare,Non-smoker
+Drug A,17,0.039,T4,I,0,0,24,2020-03-19,2022-06-13,FALSE,FALSE,28.9,108,ID-119,Hospital B,Medicare,Former smoker
+Drug A,68,NA,T2,III,NA,0,24,2021-02-12,2022-11-08,TRUE,TRUE,22.2,113,ID-120,Hospital C,Medicare,Non-smoker
+Drug B,57,0.238,T1,II,1,0,24,2020-06-22,2022-04-07,TRUE,TRUE,33,129,ID-121,Hospital B,Medicaid,Non-smoker
+Drug A,66,2.702,T2,I,0,0,24,2021-01-03,2022-09-09,FALSE,FALSE,31.9,121,ID-122,Hospital C,Medicare,Current smoker
+Drug B,44,1.441,T1,II,0,1,13,2020-09-20,2022-04-09,FALSE,TRUE,27.8,119,ID-123,Hospital A,Private,Non-smoker
+Drug B,32,0.27,T4,II,0,1,9.73,2020-02-21,2023-09-09,FALSE,FALSE,20.3,119,ID-124,Hospital A,Medicaid,Non-smoker
+Drug A,67,0.846,T3,II,0,1,15.65,2020-01-24,2023-05-15,TRUE,FALSE,22.5,99,ID-125,Hospital A,Medicaid,Non-smoker
+Drug A,48,0.529,T3,I,1,0,24,2020-05-24,2023-11-08,TRUE,TRUE,30.5,105,ID-126,Hospital B,Medicaid,Former smoker
+Drug A,62,NA,T3,III,1,1,3.53,2021-12-13,2022-03-02,TRUE,FALSE,21.5,111,ID-127,Hospital C,Medicaid,Current smoker
+Drug B,35,2.19,T2,III,0,1,20.35,2020-07-22,2023-09-05,TRUE,TRUE,29.6,101,ID-128,Hospital A,Medicare,Non-smoker
+Drug A,53,0.976,T1,II,0,1,23.41,2020-11-06,2022-03-02,TRUE,FALSE,29.2,124,ID-129,Hospital A,Private,Non-smoker
+Drug B,53,3.062,T2,III,0,1,16.47,2021-09-09,2022-09-26,FALSE,TRUE,28.9,135,ID-130,Hospital B,Private,Current smoker
+Drug B,66,0.124,T1,I,1,0,24,2021-01-26,2023-05-01,TRUE,TRUE,30.7,143,ID-131,Hospital B,Private,Non-smoker
+Drug B,NA,0.045,T2,I,0,0,24,2020-06-04,2022-01-19,TRUE,FALSE,25,130,ID-132,Hospital B,Medicare,Former smoker
+Drug B,57,1.892,T2,I,0,1,14.65,2020-03-13,2023-04-08,TRUE,TRUE,28.4,112,ID-133,Hospital B,Medicaid,Current smoker
+Drug A,47,0.711,T1,II,0,1,17.81,2020-05-27,2023-05-26,TRUE,FALSE,17.6,82,ID-134,Hospital C,Medicaid,Non-smoker
+Drug B,58,1.079,T3,II,1,0,24,2020-01-22,2023-02-14,FALSE,FALSE,22.6,130,ID-135,Hospital C,Medicaid,Non-smoker
+Drug A,43,1.061,T2,III,0,1,21.83,2021-12-10,2022-02-14,TRUE,FALSE,25.7,113,ID-136,Hospital B,Private,Current smoker
+Drug A,45,0.239,T1,II,1,0,24,2021-01-15,2023-12-30,TRUE,FALSE,15.1,113,ID-137,Hospital C,Medicare,Non-smoker
+Drug A,44,0.361,T1,II,1,0,24,2020-12-25,2022-03-04,TRUE,FALSE,22.7,137,ID-138,Hospital A,Private,Former smoker
+Drug B,63,0.033,T1,II,0,1,21.49,2021-04-01,2022-09-28,FALSE,TRUE,20.8,106,ID-139,Hospital B,Private,Non-smoker
+Drug B,59,1.133,T3,II,1,1,12.68,2020-08-30,2022-03-29,TRUE,FALSE,32.1,143,ID-140,Hospital A,Private,Current smoker
+Drug A,44,NA,T3,II,1,0,24,2021-05-05,2022-12-29,TRUE,TRUE,20.1,106,ID-141,Hospital C,Medicaid,Former smoker
+Drug B,53,1.418,T4,I,1,0,24,2020-06-18,2023-08-17,TRUE,FALSE,31.2,129,ID-142,Hospital C,Medicaid,Former smoker
+Drug A,51,3.751,T1,I,0,0,24,2021-12-08,2023-07-27,TRUE,FALSE,29.7,120,ID-143,Hospital A,Medicaid,Current smoker
+Drug B,28,3.02,T2,III,NA,0,24,2020-03-16,2023-05-26,FALSE,FALSE,20.6,102,ID-144,Hospital B,Medicare,Current smoker
+Drug B,65,0.086,T2,II,0,1,10.07,2021-02-28,2022-10-30,TRUE,FALSE,24.2,104,ID-145,Hospital A,Medicaid,Former smoker
+Drug A,63,0.772,T1,II,0,0,24,2021-10-31,2022-02-01,FALSE,TRUE,20.5,118,ID-146,Hospital C,Medicaid,Current smoker
+Drug B,76,1.882,T3,II,1,0,24,2020-01-23,2022-12-17,FALSE,TRUE,25.4,122,ID-147,Hospital C,Medicare,Former smoker
+Drug A,61,2.725,T4,II,0,0,24,2020-03-25,2023-01-07,TRUE,TRUE,26.2,97,ID-148,Hospital C,Medicare,Non-smoker
+Drug A,33,2.41,T2,II,1,1,8.37,2021-08-03,2023-02-26,FALSE,FALSE,34.5,113,ID-149,Hospital C,Medicare,Former smoker
+Drug B,48,0.352,T4,I,NA,1,20.33,2020-12-18,2022-05-08,FALSE,FALSE,25.8,135,ID-150,Hospital C,Private,Non-smoker
+Drug A,42,0.895,T2,I,NA,0,24,2020-10-22,2022-12-11,FALSE,TRUE,24.5,111,ID-151,Hospital B,Medicaid,Former smoker
+Drug B,36,0.215,T1,III,0,0,24,2020-02-24,2023-10-09,TRUE,TRUE,11.7,114,ID-152,Hospital C,Medicare,Current smoker
+Drug A,55,0.141,T2,II,0,1,21.33,2021-12-28,2023-10-03,FALSE,TRUE,26.6,147,ID-153,Hospital B,Medicare,Current smoker
+Drug A,20,2.288,T3,II,0,1,12.63,2021-12-17,2022-01-17,TRUE,TRUE,22.5,137,ID-154,Hospital A,Private,Former smoker
+Drug B,26,1.658,T1,I,0,1,13.08,2020-12-09,2022-02-24,TRUE,TRUE,17.2,102,ID-155,Hospital B,Medicare,Non-smoker
+Drug A,50,1.255,T3,II,0,0,24,2021-04-10,2022-07-24,FALSE,FALSE,23.7,122,ID-156,Hospital A,Medicaid,Non-smoker
+Drug B,47,1.306,T4,I,NA,1,15.1,2020-08-04,2023-11-05,FALSE,TRUE,23.4,137,ID-157,Hospital A,Medicaid,Current smoker
+Drug A,74,0.081,T2,II,NA,1,20.14,2020-11-07,2023-07-28,FALSE,FALSE,26.3,129,ID-158,Hospital C,Medicare,Former smoker
+Drug B,50,0.667,T2,III,0,1,10.55,2020-06-09,2023-05-03,FALSE,TRUE,21.5,105,ID-159,Hospital C,Private,Non-smoker
+Drug B,31,0.046,T1,II,1,0,24,2020-01-12,2023-12-22,FALSE,FALSE,28.1,88,ID-160,Hospital A,Medicaid,Non-smoker
+Drug B,45,0.662,T2,I,0,0,24,2020-07-30,2022-11-22,TRUE,FALSE,22,138,ID-161,Hospital B,Medicare,Former smoker
+Drug B,NA,1.985,T2,I,0,0,24,2020-04-17,2023-06-19,TRUE,FALSE,20.1,131,ID-162,Hospital B,Private,Current smoker
+Drug B,66,1.063,T3,I,1,0,24,2020-04-19,2022-05-06,FALSE,TRUE,27.2,85,ID-163,Hospital B,Private,Former smoker
+Drug A,76,1.55,T1,III,1,1,23.6,2021-02-12,2023-10-18,FALSE,FALSE,25.5,97,ID-164,Hospital A,Medicaid,Non-smoker
+Drug B,47,0.015,T2,I,0,0,24,2021-01-29,2022-03-22,TRUE,FALSE,32.9,131,ID-165,Hospital A,Private,Current smoker
+Drug B,48,0.056,T2,I,0,1,19.98,2021-05-30,2023-05-30,FALSE,TRUE,24.7,133,ID-166,Hospital C,Medicare,Current smoker
+Drug A,56,0.425,T1,II,0,1,15.55,2020-03-07,2023-12-19,TRUE,FALSE,22.6,100,ID-167,Hospital B,Medicaid,Former smoker
+Drug B,70,0.51,T1,I,1,1,23.72,2021-01-24,2022-01-04,FALSE,FALSE,25.3,135,ID-168,Hospital B,Medicare,Former smoker
+Drug A,46,0.929,T3,I,0,1,22.41,2021-05-04,2022-10-29,TRUE,TRUE,26.7,109,ID-169,Hospital C,Private,Non-smoker
+Drug A,NA,2.345,T2,III,1,1,19.54,2020-04-23,2023-07-20,TRUE,FALSE,20.2,105,ID-170,Hospital B,Medicaid,Non-smoker
+Drug B,41,0.25,T3,III,0,1,16.57,2020-06-28,2023-05-14,FALSE,TRUE,27.1,114,ID-171,Hospital C,Medicaid,Former smoker
+Drug A,41,0.816,T1,I,1,0,24,2021-06-26,2023-04-12,FALSE,TRUE,26.5,134,ID-172,Hospital A,Medicaid,Former smoker
+Drug A,19,0.022,T1,III,0,0,24,2021-08-25,2023-01-05,TRUE,TRUE,29.8,111,ID-173,Hospital B,Medicare,Current smoker
+Drug B,49,0.16,T2,II,1,0,24,2021-06-02,2023-10-09,TRUE,FALSE,24.5,130,ID-174,Hospital B,Medicaid,Current smoker
+Drug B,43,0.547,T4,I,NA,1,21.91,2020-10-13,2023-03-23,FALSE,TRUE,26.9,132,ID-175,Hospital A,Private,Non-smoker
+Drug B,43,3.642,T2,III,1,0,24,2021-11-10,2023-08-02,FALSE,TRUE,28.5,140,ID-176,Hospital C,Medicaid,Non-smoker
+Drug A,75,0.092,T4,I,0,1,12.53,2020-07-18,2023-08-31,FALSE,TRUE,23.4,121,ID-177,Hospital C,Medicaid,Current smoker
+Drug B,52,1.2,T4,II,1,0,24,2020-09-24,2023-08-09,FALSE,FALSE,24,136,ID-178,Hospital C,Medicare,Current smoker
+Drug B,42,1.512,T2,I,0,1,18.63,2020-03-21,2023-07-16,TRUE,TRUE,21.4,124,ID-179,Hospital A,Private,Current smoker
+Drug A,37,NA,T3,I,0,1,14.82,2020-12-31,2023-11-28,TRUE,FALSE,23,104,ID-180,Hospital B,Medicare,Former smoker
+Drug A,45,1.649,T4,III,1,1,16.46,2020-04-09,2023-05-11,TRUE,TRUE,25,108,ID-181,Hospital B,Medicaid,Non-smoker
+Drug A,NA,0.862,T3,I,0,0,24,2020-11-11,2022-03-01,TRUE,TRUE,23.2,133,ID-182,Hospital C,Medicare,Current smoker
+Drug B,NA,0.182,T4,II,0,1,9.24,2021-07-04,2023-04-03,FALSE,FALSE,18.5,93,ID-183,Hospital A,Medicaid,Non-smoker
+Drug B,38,1.075,T4,I,1,1,17.77,2021-09-18,2023-11-30,FALSE,FALSE,21.3,159,ID-184,Hospital C,Private,Former smoker
+Drug B,44,0.021,T1,II,0,0,24,2020-05-11,2023-10-17,TRUE,FALSE,31.6,121,ID-185,Hospital B,Private,Non-smoker
+Drug B,45,0.402,T1,II,1,0,24,2020-06-16,2022-02-08,FALSE,FALSE,25.2,146,ID-186,Hospital B,Private,Non-smoker
+Drug B,39,0.063,T4,II,0,1,9.92,2021-01-23,2022-05-02,TRUE,FALSE,28.9,134,ID-187,Hospital C,Private,Non-smoker
+Drug A,46,1.129,T4,III,0,1,16.16,2020-07-27,2022-05-19,FALSE,FALSE,27.6,114,ID-188,Hospital B,Medicaid,Former smoker
+Drug A,55,NA,T4,II,0,1,10.51,2021-11-30,2023-11-13,TRUE,TRUE,23.7,112,ID-189,Hospital B,Private,Former smoker
+Drug A,42,1.173,T1,II,0,1,20.81,2021-04-01,2022-11-24,FALSE,TRUE,27,115,ID-190,Hospital A,Medicaid,Current smoker
+Drug A,60,0.717,T2,III,0,0,24,2021-01-25,2022-08-28,TRUE,FALSE,30.4,111,ID-191,Hospital A,Private,Current smoker
+Drug A,31,0.205,T2,II,0,1,16.44,2021-11-27,2023-04-03,TRUE,FALSE,24,108,ID-192,Hospital A,Medicare,Non-smoker
+Drug A,45,0.946,T2,III,0,0,24,2020-02-09,2023-03-08,FALSE,FALSE,21.8,126,ID-193,Hospital B,Medicaid,Current smoker
+Drug B,38,0.386,T4,III,0,1,22.4,2021-12-29,2022-09-04,FALSE,FALSE,23.3,117,ID-194,Hospital C,Medicaid,Non-smoker
+Drug A,41,0.37,T3,II,0,1,11.76,2021-12-25,2022-05-04,TRUE,TRUE,24.6,108,ID-195,Hospital A,Private,Non-smoker
+Drug B,NA,1.148,T3,I,0,0,24,2020-08-25,2022-10-21,TRUE,TRUE,14.7,116,ID-196,Hospital C,Medicaid,Current smoker
+Drug A,69,0.778,T2,II,1,1,21.6,2020-09-07,2022-07-25,TRUE,FALSE,25.6,127,ID-197,Hospital C,Medicare,Non-smoker
+Drug A,66,0.136,T2,III,1,0,24,2020-03-30,2023-02-26,FALSE,TRUE,30.6,88,ID-198,Hospital A,Medicaid,Non-smoker
+Drug A,27,0.439,T4,III,NA,1,19.81,2021-10-08,2022-10-31,TRUE,TRUE,29,106,ID-199,Hospital A,Medicare,Non-smoker
+Drug A,64,1.148,T3,I,0,0,24,2021-11-14,2023-05-18,TRUE,TRUE,20.8,125,ID-200,Hospital B,Medicaid,Non-smoker

@@ -187,4 +187,4 @@ attr(trial$hospital, "label") <- "Hospital"
 attr(trial$insurance, "label") <- "Insurance Type"
 attr(trial$smoking_status, "label") <- "Smoking Status"
 
-trial |> readr::write_csv(file = here::here("data/trial3_unstructured_col.csv"))
+trial |> readr::write_csv(file = here::here("inst/extdata/df_trial3_unstructured_col.csv"))

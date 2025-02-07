@@ -4,7 +4,7 @@
 #' @param sheet Sheet name or number. Default NULL reads first sheet
 #' @return Invisibly returns CSV output path
 #' @importFrom readxl read_xlsx
-#' @importFrom glue glue#'
+#' @importFrom glue glue
 #' @export
 excel_to_csv <- function(path, filename, sheet = NULL) {
   # Read Excel file
