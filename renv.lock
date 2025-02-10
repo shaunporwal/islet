@@ -1131,6 +1131,34 @@
       ],
       "Hash": "ccbb8846be320b627e6aa2b4616a2ded"
     },
+    "openai": {
+      "Package": "openai",
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "openai",
+      "RemoteUsername": "samterfa",
+      "RemoteSha": "dc92d17c1946440b9ae650142528a2a2fbe2b939",
+      "Requirements": [
+        "dplyr",
+        "glue",
+        "httr",
+        "jsonlite",
+        "magrittr",
+        "purrr",
+        "rlang",
+        "rstudioapi",
+        "snakecase",
+        "stats",
+        "stringr",
+        "tibble",
+        "tidyr",
+        "tidyselect",
+        "utils"
+      ],
+      "Hash": "124e0e07e7a80e42d81f460f360128e3"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.2.2",
