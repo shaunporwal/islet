@@ -6,7 +6,7 @@ test_that("base_dataset_metrics returns a data frame with expected columns", {
   df3 <- data.frame(MRN = c(4, 7, 8))
   named_list_dfs <- list(df1 = df1, df2 = df2, df3 = df3)
 
-  result <- base_dataset_metrics(named_list_dfs, "MRN")
+  result <- base_dataset_metrics(named_list_dfs, "MRN", "numeric")
 
   expect_s3_class(result, "data.frame")
   expect_true(all(c("DataFrame", "Unique_Count", "Total_Common", "Is_Main") %in% colnames(result)))
@@ -18,7 +18,7 @@ test_that("base_dataset_metrics computes metrics correctly", {
   df3 <- data.frame(MRN = c(4, 7, 8))
   named_list_dfs <- list(df1 = df1, df2 = df2, df3 = df3)
 
-  result <- base_dataset_metrics(named_list_dfs, "MRN")
+  result <- base_dataset_metrics(named_list_dfs, "MRN", "numeric")
 
   # Expected unique counts: df1 = 4, df2 = 4, df3 = 3
   expect_equal(result$Unique_Count, c(4, 4, 3))
@@ -37,7 +37,7 @@ test_that("base_dataset_metrics works with a single dataframe", {
   df1 <- data.frame(MRN = c(1, 2, 3))
   named_list_dfs <- list(df1 = df1)
 
-  result <- base_dataset_metrics(named_list_dfs, "MRN")
+  result <- base_dataset_metrics(named_list_dfs, "MRN", "numeric")
 
   expect_equal(result$Unique_Count, 3)
   # With one dataframe, there are no pairwise comparisons; rowSums returns 0.
