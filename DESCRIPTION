@@ -30,7 +30,12 @@ Imports:
     tidyr,
     glue,
     readr,
-    openai
+    openai,
+    RJDBC,
+    rJava,
+    DBI,
+    odbc,
+    keyring
 Depends:
     R (>= 2.10)
 LazyData: true
