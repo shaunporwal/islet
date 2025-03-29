@@ -16,7 +16,8 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     tibble,
-    withr
+    withr,
+    mockery
 Config/testthat/edition: 3
 Imports:
     dplyr,
@@ -35,7 +36,11 @@ Imports:
     rJava,
     DBI,
     odbc,
-    keyring
+    keyring,
+    cli,
+    fs,
+    here,
+    stringr
 Depends:
     R (>= 2.10)
 LazyData: true
