@@ -36,8 +36,8 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
       return(NULL)
     }
 
-    if (is_group && !is.null(group_col)) {
-      # For group data, ensure the column exists and handle appropriately
+    if (is_group) {
+      # For group data, join on the group column directly
       if (!(group_col %in% names(old_df)) || !(group_col %in% names(new_df))) {
         warning(paste("Group column", group_col, "not found in data"))
         return(NULL)
@@ -81,7 +81,7 @@ compare_df <- function(old_data, new_data = NULL, suffix_term = "", ind_outcomes
     char_join = merge_parsed_data(old_parsed$char_df, new_parsed$char_df),
     bin_join = merge_parsed_data(old_parsed$binary_df, new_parsed$binary_df),
     date_join = merge_parsed_data(old_parsed$date_df, new_parsed$date_df),
-    group_join = merge_parsed_data(old_parsed$group_df, new_parsed$group_df, by_col = group_col, is_group = TRUE)
+    group_join = merge_parsed_data(old_parsed$group_df, new_parsed$group_df, is_group = TRUE)
   )
 
   ordered_comparison_list <- comparison_list[c(

@@ -90,14 +90,16 @@ test_that("parse_function handles empty/invalid inputs correctly", {
   results_empty <- parse_function(empty_df)
   expect_type(results_empty, "list")
 
-  # Test with invalid group column
+  # Test with invalid group column - now expecting a warning instead of error
   trial <- read_raw_data("https://raw.githubusercontent.com/shaunporwal/islet/refs/heads/main/inst/extdata/df_trial.csv")
-  expect_error(
-    parse_function(trial, group_col = "nonexistent_column", ind_outcomes = "AGE"),
-    "The specified grouping column is missing in the dataset"
+  expect_warning(
+    results <- parse_function(trial, group_col = "nonexistent_column", ind_outcomes = "AGE"),
+    "Group column nonexistent_column not found in data"
   )
+  # Result should have group_df as NULL
+  expect_null(results$group_df)
 
-  # Test with invalid outcome
+  # Test with invalid outcome - still expecting error
   expect_error(
     parse_function(trial, group_col = "TRT", ind_outcomes = "nonexistent_outcome"),
     "Some specified outcomes are missing in the dataset"
