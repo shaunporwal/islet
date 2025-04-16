@@ -2,25 +2,28 @@
 % Please edit documentation in R/read_raw_data.R
 \name{read_raw_data}
 \alias{read_raw_data}
-\title{Read and Clean Raw Data}
+\title{Read and Clean Raw Data from CSV or Excel}
 \usage{
-read_raw_data(file, col_caps = TRUE, str_caps = TRUE)
+read_raw_data(file, sheet = 1, col_caps = TRUE, str_caps = TRUE)
 }
 \arguments{
-\item{file}{A string specifying the path to the CSV file to be read.}
+\item{file}{A string specifying the path to the CSV or Excel file.}
+
+\item{sheet}{Optional: sheet name or index if reading an Excel file. Defaults to the first sheet.}
 
 \item{col_caps}{Logical. Whether to convert column names to uppercase. Default is TRUE.}
 
-\item{str_caps}{Logical. Whether to convert string column values to uppercase. Default is TRUE.}
+\item{str_caps}{Deprecated. Character strings are now always converted to uppercase.}
 }
 \value{
 A data frame with cleaned column names and data.
 }
 \description{
-This function reads a CSV file and performs several cleaning steps:
+This function reads a CSV or Excel (.xlsx) file and performs several cleaning steps:
 \enumerate{
+\item Detects file type based on extension.
 \item Optionally converts column names to uppercase using janitor::clean_names.
 \item Attempts to parse character columns as dates in ymd format.
-\item Optionally converts character columns to uppercase if not parsed as dates.
+\item Converts remaining character columns to uppercase.
 }
 }

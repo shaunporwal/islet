@@ -2,6 +2,7 @@
 % Please edit documentation in R/here_data.R
 \name{here_data}
 \alias{here_data}
+\alias{get_data_date}
 \title{Build paths to data directories based on a data date file}
 \usage{
 here_data(
@@ -12,6 +13,8 @@ here_data(
   path_to_data_date = here::here(),
   return_date_only = FALSE
 )
+
+get_data_date(path_to_data_date = here::here())
 }
 \arguments{
 \item{...}{Additional path components to append}

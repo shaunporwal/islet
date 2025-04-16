@@ -1,6 +1,12 @@
 # Test script to diagnose DB2 connection and permissions issues
 # Run with: R -f tests/test-db2-permissions.R
 
+# Skip test if required environment variables are not set, especially in CI
+testthat::skip_if_not(
+  Sys.getenv("idb_UX") != "" && Sys.getenv("idb_PW") != "",
+  "Database credentials (idb_UX, idb_PW) not set. Skipping DB tests."
+)
+
 library(islet)
 cat("Testing DB2 connection and permissions\n")
 

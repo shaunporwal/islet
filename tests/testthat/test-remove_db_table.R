@@ -1,6 +1,12 @@
 # Test script for remove_db_table function
 # Run with: R -f tests/test-remove-db-table.R
 
+# Skip test if required environment variables are not set, especially in CI
+testthat::skip_if_not(
+  Sys.getenv("idb_UX") != "" && Sys.getenv("idb_PW") != "",
+  "Database credentials (idb_UX, idb_PW) not set. Skipping DB tests."
+)
+
 # Ensure the package is loaded correctly
 tryCatch(
   {

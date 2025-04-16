@@ -1,30 +1,113 @@
 library(testthat)
 library(fs)
 
-test_that("here_data correctly retrieves data date from file", {
+# Tests for get_data_date -----------------------------------------------------
+
+test_that("get_data_date correctly retrieves data date from file", {
   # Create a temporary file with a test date
   temp_dir <- tempdir()
   date_file_path <- file.path(temp_dir, "data_date.txt")
   test_date <- "2023-01-15"
   writeLines(test_date, date_file_path)
 
-  # Test direct file path with return_date_only = TRUE
-  expect_equal(here_data(path_to_data_date = date_file_path, return_date_only = TRUE), test_date)
+  # Test direct file path
+  expect_equal(get_data_date(date_file_path), test_date)
 
   # Test directory path with data_date.txt file
-  expect_equal(here_data(path_to_data_date = temp_dir, return_date_only = TRUE), test_date)
+  expect_equal(get_data_date(temp_dir), test_date)
 
   # Test with multi-line file (should return only first line)
   multi_line_path <- file.path(temp_dir, "multi_line.txt")
   writeLines(c(test_date, "other content"), multi_line_path)
-  # First line should be returned
-  expect_equal(here_data(path_to_data_date = multi_line_path, return_date_only = TRUE), test_date)
+  expect_equal(get_data_date(multi_line_path), test_date)
 
   # Clean up
   file.remove(date_file_path, multi_line_path)
 })
 
-test_that("here_data warns for non-standard date formats", {
+test_that("get_data_date warns for non-standard date formats", {
+  # Create a temporary file with non-standard date format
+  temp_dir <- tempdir()
+  date_file_path <- file.path(temp_dir, "data_date.txt")
+
+  # Test with non-standard format
+  writeLines("not-a-date", date_file_path)
+  expect_warning(
+    get_data_date(date_file_path),
+    "doesn't appear to be in a standard date format"
+  )
+
+  # Test with standard formats (should not warn)
+  writeLines("2023-01-15", date_file_path)
+  expect_silent(get_data_date(date_file_path))
+
+  writeLines("20230115", date_file_path)
+  expect_silent(get_data_date(date_file_path))
+
+  # Clean up
+  file.remove(date_file_path)
+})
+
+test_that("get_data_date handles errors correctly", {
+  # Test with non-existent file
+  nonexistent_file <- file.path(tempdir(), "nonexistent.txt")
+  expect_error(
+    get_data_date(nonexistent_file),
+    "does not exist|importing data date"
+  )
+
+  # Test with empty file
+  empty_file <- file.path(tempdir(), "empty.txt")
+  writeLines("", empty_file)
+  expect_error(
+    get_data_date(empty_file),
+    "The data date file is empty"
+  )
+
+  # Clean up
+  if (file.exists(empty_file)) file.remove(empty_file)
+})
+
+test_that("get_data_date searches for alternative filenames", {
+  # Create a temporary directory
+  temp_dir <- tempdir()
+
+  # Test with dataDate file instead of data_date.txt
+  alternate_file <- file.path(temp_dir, "dataDate")
+  test_date <- "2023-02-20"
+  writeLines(test_date, alternate_file)
+
+  expect_equal(get_data_date(temp_dir), test_date)
+
+  # Test error when no valid files found
+  file.remove(alternate_file)
+  expect_error(
+    get_data_date(temp_dir),
+    "No text file containing the data date could be found"
+  )
+
+  # Clean up
+  if (file.exists(alternate_file)) file.remove(alternate_file)
+})
+
+# Tests for here_data -------------------------------------------------------
+
+test_that("here_data correctly retrieves data date using get_data_date", {
+  # Create a temporary file with a test date
+  temp_dir <- tempdir()
+  date_file_path <- file.path(temp_dir, "data_date.txt")
+  test_date <- "2023-01-15"
+  writeLines(test_date, date_file_path)
+
+  # Test that here_data uses get_data_date implicitly
+  expect_equal(here_data(path_to_data_date = date_file_path, return_date_only = TRUE), test_date)
+  expect_equal(here_data(path_to_data_date = temp_dir, return_date_only = TRUE), test_date)
+
+  # Clean up
+  file.remove(date_file_path)
+})
+
+test_that("here_data warns for non-standard date formats (via get_data_date)", {
   # Create a temporary file with non-standard date format
   temp_dir <- tempdir()
   date_file_path <- file.path(temp_dir, "data_date.txt")
@@ -47,11 +130,9 @@ test_that("here_data warns for non-standard date formats", {
   file.remove(date_file_path)
 })
 
-test_that("here_data handles errors correctly", {
+test_that("here_data handles errors correctly (via get_data_date)", {
   # Test with non-existent file
   nonexistent_file <- file.path(tempdir(), "nonexistent.txt")
-
-  # We're expecting an error here about the file not existing
   expect_error(
     here_data(path_to_data_date = nonexistent_file, return_date_only = TRUE),
     "does not exist|importing data date"
@@ -69,7 +150,7 @@ test_that("here_data handles errors correctly", {
   if (file.exists(empty_file)) file.remove(empty_file)
 })
 
-test_that("here_data searches for alternative filenames", {
+test_that("here_data searches for alternative filenames (via get_data_date)", {
   # Create a temporary directory
   temp_dir <- tempdir()
 
